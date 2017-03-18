@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "889712897958",
+    "firebase_url": "https://fishingplus-fd1d9.firebaseio.com",
+    "project_id": "fishingplus-fd1d9",
+    "storage_bucket": "fishingplus-fd1d9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889712897958:android:b0b0f01025e7c3b7",
+        "android_client_info": {
+          "package_name": "com.softgroup.fishingplus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "889712897958-eih7fhdi3m7b8rvbugco4k0omo2nels3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.softgroup.fishingplus",
+            "certificate_hash": "f99477906075e87b1784923d70ee77b128d75085"
+          }
+        },
+        {
+          "client_id": "889712897958-3jn0vcv8alpkkdkcvlqbfpg529v86cap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrh2yMVO092tkLXOYG0dRGzDuxYANc6xA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "889712897958-3jn0vcv8alpkkdkcvlqbfpg529v86cap.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
