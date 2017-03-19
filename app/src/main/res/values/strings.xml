@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FishingPlus</string>
+    <string name="sign_out">Sing Out</string>
 </resources>
