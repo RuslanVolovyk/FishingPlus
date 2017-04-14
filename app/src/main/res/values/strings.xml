@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">FishingPlus</string>
-    <string name="sign_out">Sing Out</string>
+    <string name="sign_out">Выйти</string>
+    <string name="maps">Maps</string>
+    <string name="weather">Weather</string>
+    <string name="send_a_message">Send a message</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="weather_activity_name">Текущая погода</string>
+    <string name="add_foto_from_camera">Добавить фото с камеры</string>
+    <string name="add_foto_from_galery">Добавить фото с галереи</string>
+
+
 </resources>
