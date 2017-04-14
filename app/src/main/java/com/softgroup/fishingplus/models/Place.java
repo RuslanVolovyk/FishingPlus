@@ -4,9 +4,9 @@ package com.softgroup.fishingplus.models;
  * Created by Администратор on 13.04.2017.
  */
 
-public class Location {
-    private float lon;
-    private float lat;
+public class Place {
+    private double latitude; // latitude
+    private double longitude; // longitude
     private long sunrise;
     private long sunset;
     private String country;
@@ -14,20 +14,20 @@ public class Location {
 
     private int lastUpdate;
 
-    public float getLon() {
-        return lon;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setLon(float lon) {
-        this.lon = lon;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
-    public float getLat() {
-        return lat;
+    public double getLongitude() {
+        return longitude;
     }
 
-    public void setLat(float lat) {
-        this.lat = lat;
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public long getSunrise() {

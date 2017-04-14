@@ -1,5 +1,6 @@
 package com.softgroup.fishingplus.screens;
 
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,12 +11,14 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.softgroup.fishingplus.R;
 import com.softgroup.fishingplus.Utils;
+import com.softgroup.fishingplus.data.GPSCurrentPosition;
 import com.softgroup.fishingplus.data.JsonWeatherParser;
 import com.softgroup.fishingplus.data.WeatherHttpClient;
 import com.softgroup.fishingplus.models.Weather;
 
 
 public class WeatherActivity extends AppCompatActivity {
+    public static final String TAG = WeatherActivity.class.getName();
     private TextView cityName;
     private TextView temperature;
     private ImageView icon;
@@ -27,8 +30,8 @@ public class WeatherActivity extends AppCompatActivity {
     private TextView sunSet;
     private TextView lastUpdate;
 
+    Location location;
     Weather weather = new Weather();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +50,22 @@ public class WeatherActivity extends AppCompatActivity {
         sunSet = (TextView) findViewById(R.id.text_view_sun_set);
         lastUpdate = (TextView) findViewById(R.id.text_view_last_update);
 
-        renderWeatherData("Moscow, ru");
 
+        GPSCurrentPosition gpsCurrentPosition = new GPSCurrentPosition(WeatherActivity.this);
+        location = gpsCurrentPosition.getLocation();
+
+
+        if (location == null) {
+            Log.v(TAG, "Location == null");
+
+        }
+        double lat = location.getLatitude();
+        double lon = location.getLongitude();
+
+        Log.v(TAG, "Latitude and Longitude" + lat + lon);
+
+
+        renderWeatherData("Moscow, ru");
 
     }
 
@@ -80,7 +97,7 @@ public class WeatherActivity extends AppCompatActivity {
 
                 return null;
             } else {
-                Log.v("Weather", weather.location.getCity());
+                Log.v("Weather", weather.place.getCity());
 
             }
             return weather;
@@ -90,13 +107,13 @@ public class WeatherActivity extends AppCompatActivity {
         protected void onPostExecute(Weather weather) {
             super.onPostExecute(weather);
 
-            cityName.setText(weather.location.getCity() + ", " + weather.location.getCountry());
+            cityName.setText(weather.place.getCity() + ", " + weather.place.getCountry());
             temperature.setText(String.format("%.1f °C", weather.currentCondition.getTemp()));
             humidity.setText("Влажность воздуха: " + weather.currentCondition.getHuminity() + " %");
             pressure.setText("Давление: " + Utils.convertHpaToMMHg(weather.currentCondition.getPressure()) + " мм рт.ст.");
             wind.setText("Скорость ветра: " + weather.wind.getSpeed() + " м/с");
-            sunRise.setText(String.format("Восход солнца: %s ",  Utils.formatTimeFromSunSetandSunRise(weather.location.getSunrise())));
-            sunSet.setText(String.format("Закат солнца: %s ", Utils.formatTimeFromSunSetandSunRise(weather.location.getSunset())));
+            sunRise.setText(String.format("Восход солнца: %s ", Utils.formatTimeFromSunSetandSunRise(weather.place.getSunrise())));
+            sunSet.setText(String.format("Закат солнца: %s ", Utils.formatTimeFromSunSetandSunRise(weather.place.getSunset())));
             lastUpdate.setText(String.format("Последнее обновление: %s", Utils.getCurrentDate()));
             description.setText("Облачность: " + weather.currentCondition.getCondition() + " (" + weather.currentCondition.getDescription() + ")");
             Glide.with(WeatherActivity.this)

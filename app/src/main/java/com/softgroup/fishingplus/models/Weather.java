@@ -6,7 +6,7 @@ package com.softgroup.fishingplus.models;
 
 
 public class Weather {
-    public Location location;
+    public Place place;
     public String iconData;
     public CurrentCondition currentCondition = new CurrentCondition();
     public Temperature temperature = new Temperature();
