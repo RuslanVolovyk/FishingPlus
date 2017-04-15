@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FishingPlus</string>
+    <string name="app_name">Рыбалка Plus</string>
     <string name="sign_out">Выйти</string>
     <string name="maps">Maps</string>
     <string name="weather">Weather</string>
@@ -10,6 +10,18 @@
     <string name="add_foto_from_galery">Добавить фото с галереи</string>
     <string name="show_on_the_map">Показать на карте</string>
     <string name="name_point">Название точки</string>
+    <string name="date_point">Дата точки</string>
+    <string name="point_title_label">Название точки</string>
+    <string name="point_title_label_hint">введите название точки</string>
+    <string name="point_description_label_hint">введите описание точки</string>
+    <string name="new_point">Создать точку</string>
+    <string name="weather_conditions">Погодные условия</string>
+    <string name="weather_temp">температура</string>
+    <string name="pressure">Давление</string>
+    <string name="weather_humidity">Влажность</string>
+    <string name="weather_cloudy">Облачность</string>
+    <string name="weather_speed_wind">Скорость ветра</string>
+    <string name="my_point">Мои точки</string>
 
 
 </resources>
