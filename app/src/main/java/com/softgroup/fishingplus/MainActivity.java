@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getName();
     public static final int DEFAULT_MSG_LENGTH_LIMIT = 1000;
     private static final int RC_PHOTO_PICKER = 201;
-    public static final String ANONYMOUS = "anonymous";
+   // public static final String ANONYMOUS = "anonymous";
     public static final int RC_SIGN_IN = 101;
     private Button mSendButton;
     private EditText mMessageEditText;
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     private StorageReference chatPhotosStorageReference;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
-    private String username;
+    public static String username;
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        username = ANONYMOUS;
+       // username = ANONYMOUS;
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 if (user != null) {
                     onSignedInInitialize(user.getDisplayName());
                 } else {
-                    onSignedOutCleanup();
+                 //   onSignedOutCleanup();
                     startActivityForResult(AuthUI.getInstance()
                             .createSignInIntentBuilder()
                             .setIsSmartLockEnabled(false)
@@ -195,14 +195,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void onSignedOutCleanup() {
-        username = ANONYMOUS;
-        messageAdapter.clear();
-    }
+//    private void onSignedOutCleanup() {
+//        username = ANONYMOUS;
+//        messageAdapter.clear();
+//    }
 
     private void onSignedInInitialize(String displayName) {
         username = displayName;
         attachDatabaseReadListener();
+    }
+
+    public static String getUsername(){
+        String name = username;
+     return name;
     }
 
     private void attachDatabaseReadListener() {
