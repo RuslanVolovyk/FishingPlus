@@ -8,6 +8,8 @@
     <string name="weather_activity_name">Текущая погода</string>
     <string name="add_foto_from_camera">Добавить фото с камеры</string>
     <string name="add_foto_from_galery">Добавить фото с галереи</string>
+    <string name="show_on_the_map">Показать на карте</string>
+    <string name="name_point">Название точки</string>
 
 
 </resources>
