@@ -14,7 +14,7 @@ import java.util.Date;
 public class Utils {
     public static final String FRIENDLY_MSG_LENGTH = "friendly_msg_length";
     public static final String OPEN_WEATHER_MAP_API_KEY = "&appid=d3bf86bef1b2822625c633f6161032fe";
-    public static final String BASE_URL = "http://api.openweathermap.org/data/2.5/weather?q=";
+    public static final String BASE_URL = "http://api.openweathermap.org/data/2.5/weather";
 
 
     public static JSONObject getObject (String string, JSONObject jsonObject) throws JSONException {
@@ -58,4 +58,5 @@ public class Utils {
 
         return convertPressure;
     }
+
 }

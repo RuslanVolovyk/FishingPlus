@@ -61,17 +61,11 @@ public class WeatherActivity extends AppCompatActivity {
         }
         double lat = location.getLatitude();
         double lon = location.getLongitude();
+        WeatherTask weatherTask = new WeatherTask();
+        weatherTask.execute(String.format("?lat=%.2f&lon=%.2f&units=metric", lat, lon));
 
         Log.v(TAG, "Latitude and Longitude" + lat + lon);
 
-
-        renderWeatherData("Moscow, ru");
-
-    }
-
-    public void renderWeatherData(String city) {
-        WeatherTask weatherTask = new WeatherTask();
-        weatherTask.execute(city + "&units=metric");
     }
 
     private class WeatherTask extends AsyncTask<String, Void, Weather> {
@@ -82,22 +76,22 @@ public class WeatherActivity extends AppCompatActivity {
             if (strings.length == 0) {
                 return null;
             }
-            String date = ((new WeatherHttpClient()).getWeatherData(strings[0]));
+            String data = ((new WeatherHttpClient()).getWeatherData(strings[0]));
 
-            if (date == null) {
-                Log.v("Weather", "null");
+            if (data == null) {
+                Log.v(TAG, "Data null");
                 return null;
             } else {
-                Log.v("Weather", date);
+                Log.v("Data", data);
             }
-            weather = JsonWeatherParser.getWeather(date);
+            weather = JsonWeatherParser.getWeather(data);
 
             if (weather == null) {
-                Log.v("Weather", "null");
+                Log.v(TAG, "Weather null");
 
                 return null;
             } else {
-                Log.v("Weather", weather.place.getCity());
+                Log.v(TAG, "Weather" + weather.place.getCity());
 
             }
             return weather;

@@ -16,13 +16,13 @@ import java.net.URL;
 public class WeatherHttpClient {
 
     //http connection
-    public String getWeatherData(String place) {
+    public String getWeatherData(String coord) {
 
         HttpURLConnection connection;
         InputStream inputStream;
 
         try {
-            connection = (HttpURLConnection) (new URL(Utils.BASE_URL + place + Utils.OPEN_WEATHER_MAP_API_KEY))
+            connection = (HttpURLConnection) (new URL(Utils.BASE_URL+coord+Utils.OPEN_WEATHER_MAP_API_KEY))
                     .openConnection();
             connection.setRequestMethod("GET");
             connection.setDoInput(true);
