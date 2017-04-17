@@ -2,9 +2,11 @@ package com.softgroup.fishingplus;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -22,6 +24,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -37,6 +40,7 @@ import com.softgroup.fishingplus.models.FriendlyMessage;
 import com.softgroup.fishingplus.models.MessageAdapter;
 import com.softgroup.fishingplus.screens.WeatherActivity;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int RC_PHOTO_PICKER = 201;
    // public static final String ANONYMOUS = "anonymous";
     public static final int RC_SIGN_IN = 101;
+    private static final int REQUEST_IMAGE_CAPTURE = 102;
     private Button mSendButton;
     private EditText mMessageEditText;
     private ProgressBar mProgressBar;
@@ -192,7 +197,35 @@ public class MainActivity extends AppCompatActivity {
                             messagesDatabaseReference.push().setValue(friendlyMessage);
                         }
                     });
+        } else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
+
+            Bitmap photoFromCamera = (Bitmap) data.getExtras().get("data");
+
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            photoFromCamera.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] bytesData = baos.toByteArray();
+
+            UploadTask uploadTask = chatPhotosStorageReference.putBytes(bytesData);
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle unsuccessful uploads
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+
+                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                    FriendlyMessage friendlyMessage = new FriendlyMessage(username, null, downloadUrl.toString());
+                    messagesDatabaseReference.push().setValue(friendlyMessage);
+                }
+            });
+
+
         }
+
     }
 
 //    private void onSignedOutCleanup() {
@@ -286,22 +319,36 @@ public class MainActivity extends AppCompatActivity {
                 AuthUI.getInstance().signOut(this);
                 break;
             case R.id.add_foto_from_galery:
-                addFotoFromGalery();
+                addPhotoFromGalery();
                 break;
             case R.id.add_foto_from_camera:
-                addFotoFromCamera();
-
+                addPhotoFromCamera();  
+            case R.id.menu_my_points:
+                   // show list points
+                break;
+            case R.id.menu_create_new_points:
+                createPointsMethod();
+                break;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private void addFotoFromCamera() {
+    private void createPointsMethod() {
 
 
     }
 
-    public void addFotoFromGalery() {
+
+    private void addPhotoFromCamera() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    public void addPhotoFromGalery() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/jpeg");
         intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
