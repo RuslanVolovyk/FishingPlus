@@ -38,6 +38,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.softgroup.fishingplus.models.FriendlyMessage;
 import com.softgroup.fishingplus.models.MessageAdapter;
+import com.softgroup.fishingplus.screens.MapsActivity;
+import com.softgroup.fishingplus.screens.PointsListActivity;
 import com.softgroup.fishingplus.screens.WeatherActivity;
 
 import java.io.ByteArrayOutputStream;
@@ -53,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getName();
     public static final int DEFAULT_MSG_LENGTH_LIMIT = 1000;
     private static final int RC_PHOTO_PICKER = 201;
-   // public static final String ANONYMOUS = "anonymous";
     public static final int RC_SIGN_IN = 101;
     private static final int REQUEST_IMAGE_CAPTURE = 102;
     private Button mSendButton;
@@ -322,21 +323,16 @@ public class MainActivity extends AppCompatActivity {
                 addPhotoFromGalery();
                 break;
             case R.id.add_foto_from_camera:
-                addPhotoFromCamera();  
+                addPhotoFromCamera();
+                break;
             case R.id.menu_my_points:
-                   // show list points
+                Intent intent = new Intent(MainActivity.this, PointsListActivity.class);
+                startActivity(intent);
                 break;
-            case R.id.menu_create_new_points:
-                createPointsMethod();
-                break;
+
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private void createPointsMethod() {
-
-
     }
 
 

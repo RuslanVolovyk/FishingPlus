@@ -1,5 +1,7 @@
 package com.softgroup.fishingplus;
 
+import android.widget.EditText;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -57,6 +59,9 @@ public class Utils {
         int convertPressure = (int) (pressure * 0.75006375541921);
 
         return convertPressure;
+    }
+    public static boolean isBlankField(EditText etPersonData) {
+        return etPersonData.getText().toString().trim().equals("");
     }
 
 }

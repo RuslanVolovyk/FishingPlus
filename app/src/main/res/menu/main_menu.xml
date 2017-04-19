@@ -11,11 +11,7 @@
         android:title="@string/add_foto_from_camera"
         app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/menu_create_new_points"
-        android:icon="@drawable/ic_add_poin_black_24dp"
-        android:title="@string/new_point"
-        app:showAsAction="ifRoom|withText"/>
+
     <item
         android:id="@+id/menu_my_points"
         android:title="@string/my_point"

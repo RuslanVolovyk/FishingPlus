@@ -1,4 +1,4 @@
-package com.softgroup.fishingplus;
+package com.softgroup.fishingplus.screens;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -23,6 +23,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.softgroup.fishingplus.MainActivity;
+import com.softgroup.fishingplus.R;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
