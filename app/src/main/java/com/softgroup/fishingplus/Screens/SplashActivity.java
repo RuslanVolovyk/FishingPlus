@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.softgroup.fishingplus.MainActivity;
 
+
 public class SplashActivity extends AppCompatActivity {
+
 
     private static final int SPLASH_LENGTH = 2000;
 
@@ -15,7 +17,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.activity_splash);
+
 
          new Handler().postDelayed(new Runnable() {
             @Override
@@ -25,4 +27,5 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, SPLASH_LENGTH);
     }
+
 }

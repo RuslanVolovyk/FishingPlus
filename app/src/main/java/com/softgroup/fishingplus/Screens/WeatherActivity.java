@@ -62,13 +62,13 @@ public class WeatherActivity extends AppCompatActivity {
         double lat = location.getLatitude();
         double lon = location.getLongitude();
         WeatherTask weatherTask = new WeatherTask();
-        weatherTask.execute(String.format("?lat=%.2f&lon=%.2f&units=metric", lat, lon));
+        weatherTask.execute(String.format("?lat=%.4f&lon=%.4f&units=metric", lat, lon));
 
         Log.v(TAG, "Latitude and Longitude" + lat + lon);
 
     }
 
-    private class WeatherTask extends AsyncTask<String, Void, Weather> {
+    public class WeatherTask extends AsyncTask<String, Void, Weather> {
 
         @Override
         protected Weather doInBackground(String... strings) {

@@ -1,6 +1,7 @@
 package com.softgroup.fishingplus.models;
 
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by Администратор on 16.04.2017.
@@ -8,7 +9,7 @@ import java.util.Date;
 
 public class Point  {
 
-
+    private UUID uuid;
     private String name;
     private Date date;
     private String description;
@@ -19,6 +20,19 @@ public class Point  {
     private String humidity;
     private String wind;
     private String condition;
+
+
+    public Point() {
+       uuid =UUID.randomUUID();
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
 
     public String getLat() {
         return lat;
