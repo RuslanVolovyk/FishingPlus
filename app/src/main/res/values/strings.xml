@@ -3,7 +3,7 @@
     <string name="sign_out">Выйти</string>
     <string name="maps">Maps</string>
     <string name="weather">Weather</string>
-    <string name="send_a_message">Send a message</string>
+    <string name="send_a_message">Отправить</string>
     <string name="title_activity_maps">Map</string>
     <string name="weather_activity_name">Текущая погода</string>
     <string name="add_foto_from_camera">Добавить фото с камеры</string>
@@ -26,6 +26,7 @@
     <string name="message_text">text</string>
     <string name="time">time</string>
     <string name="point_description_label">Point Description</string>
+    <string name="point_date">Дата создания точки</string>
 
 
 </resources>

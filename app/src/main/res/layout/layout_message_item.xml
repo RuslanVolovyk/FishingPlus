@@ -18,7 +18,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:adjustViewBounds="true"
-        android:layout_below="@+id/text_view_message"
+        android:layout_below="@+id/text_view_name_user"
         android:scaleType="fitCenter" />
 
     <TextView

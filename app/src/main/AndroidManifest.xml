@@ -39,9 +39,11 @@
 
         <activity
             android:name=".screens.MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps">
+
+        </activity>
         <activity android:name=".screens.PointsListActivity" />
-        <activity android:name=".PointActivity"></activity>
+        <activity android:name=".screens.PointActivity"></activity>
     </application>
 
 </manifest>

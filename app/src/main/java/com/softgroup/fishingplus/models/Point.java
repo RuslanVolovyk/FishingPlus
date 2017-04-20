@@ -24,6 +24,7 @@ public class Point  {
 
     public Point() {
        uuid =UUID.randomUUID();
+        date = new Date();
     }
 
     public UUID getUuid() {
