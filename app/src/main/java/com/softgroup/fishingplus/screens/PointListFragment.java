@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import java.util.List;
 
 public class PointListFragment extends Fragment {
 
+    private static final String TAG = PointListFragment.class.getName();
     private RecyclerView recyclerView;
     private PointAdapter pointAdapter;
 
@@ -102,6 +104,7 @@ public class PointListFragment extends Fragment {
 
             public ViewHolder(View itemView) {
                 super(itemView);
+                itemView.setOnClickListener(this);
                 pointName = (TextView) itemView.findViewById(R.id.text_view_name_point);
                 time = (TextView) itemView.findViewById(R.id.text_view_date_point);
                 showOnTheMap = (ImageButton)itemView.findViewById(R.id.image_button_show_location_on_the_map);
@@ -124,6 +127,7 @@ public class PointListFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+                Log.v(TAG, "Нажатие" + point.getName());
 
             }
         }
