@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-       // username = ANONYMOUS;
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -99,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         mProgressBar.setVisibility(ProgressBar.INVISIBLE);
 
         mMessageEditText = (EditText) findViewById(R.id.edit_text_input_text);
-                mMessageEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(sharedPreferences
+        mMessageEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(sharedPreferences
                 .getInt(Utils.FRIENDLY_MSG_LENGTH, DEFAULT_MSG_LENGTH_LIMIT))});
         mMessageEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -141,12 +140,11 @@ public class MainActivity extends AppCompatActivity {
                 if (user != null) {
                     onSignedInInitialize(user.getDisplayName());
                 } else {
-                 //   onSignedOutCleanup();
                     startActivityForResult(AuthUI.getInstance()
                             .createSignInIntentBuilder()
                             .setIsSmartLockEnabled(false)
                             .setProviders(AuthUI.EMAIL_PROVIDER,
-                                    AuthUI.TWITTER_PROVIDER,
+                                    AuthUI.FACEBOOK_PROVIDER,
                                     AuthUI.GOOGLE_PROVIDER)
                             .build(), RC_SIGN_IN);
                 }
@@ -185,11 +183,8 @@ public class MainActivity extends AppCompatActivity {
             }
         } else if (requestCode == RC_PHOTO_PICKER && resultCode == RESULT_OK) {
             Uri selectedImageUri = data.getData();
-
-            // Get a reference to store file at chat_photos/<FILENAME>
             StorageReference photoRef = chatPhotosStorageReference.child(selectedImageUri.getLastPathSegment());
 
-            // Upload file to Firebase Storage
             photoRef.putFile(selectedImageUri)
                     .addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -198,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
                             messagesDatabaseReference.push().setValue(friendlyMessage);
                         }
                     });
-        } else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
+        } else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
 
             Bitmap photoFromCamera = (Bitmap) data.getExtras().get("data");
 
@@ -211,13 +206,10 @@ public class MainActivity extends AppCompatActivity {
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception exception) {
-                    // Handle unsuccessful uploads
                 }
             }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-
                     Uri downloadUrl = taskSnapshot.getDownloadUrl();
                     FriendlyMessage friendlyMessage = new FriendlyMessage(username, null, downloadUrl.toString());
                     messagesDatabaseReference.push().setValue(friendlyMessage);
@@ -228,22 +220,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
-//    private void onSignedOutCleanup() {
-//        username = ANONYMOUS;
-//        messageAdapter.clear();
-//    }
-
     private void onSignedInInitialize(String displayName) {
         username = displayName;
         attachDatabaseReadListener();
     }
-
-    public static String getUsername(){
+    public static String getUsername() {
         String name = username;
-     return name;
+        return name;
     }
-
     private void attachDatabaseReadListener() {
         if (childEventListener == null) {
             childEventListener = new ChildEventListener() {
@@ -272,14 +256,12 @@ public class MainActivity extends AppCompatActivity {
             messagesDatabaseReference.addChildEventListener(childEventListener);
         }
     }
-
     private void detachDatabaseListener() {
         if (childEventListener != null) {
             messagesDatabaseReference.removeEventListener(childEventListener);
             childEventListener = null;
         }
     }
-
     @Override
     public void onStart() {
         super.onStart();
@@ -329,28 +311,20 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, PointsListActivity.class);
                 startActivity(intent);
                 break;
-
         }
 
         return super.onOptionsItemSelected(item);
     }
-
-
     private void addPhotoFromCamera() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
         }
     }
-
     public void addPhotoFromGalery() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/jpeg");
         intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
         startActivityForResult(Intent.createChooser(intent, "Complete action using"), RC_PHOTO_PICKER);
     }
-
-
-
-   }
+}

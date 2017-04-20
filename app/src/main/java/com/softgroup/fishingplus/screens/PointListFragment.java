@@ -1,5 +1,6 @@
 package com.softgroup.fishingplus.screens;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -43,43 +44,46 @@ public class PointListFragment extends Fragment {
         PointSingle pointSingle = PointSingle.get(getActivity());
         List<Point>pointList=pointSingle.getPointList();
 
-        pointAdapter = new PointAdapter(pointList);
-        recyclerView.setAdapter(pointAdapter);
-
-
+        if(pointAdapter == null){
+            pointAdapter = new PointAdapter(pointList);
+            recyclerView.setAdapter(pointAdapter);
+        }else {
+            pointAdapter.notifyDataSetChanged();
+        }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
+    }
+
     public class PointAdapter extends RecyclerView.Adapter<PointAdapter.ViewHolder> {
         private List<Point> pointList;
         private LayoutInflater inflater;
 
-
         public PointAdapter(List<Point> pointList) {
             this.pointList = pointList;
             setHasStableIds(true);
-
         }
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                 inflater = LayoutInflater.from(getActivity());
                 View view = inflater.inflate(R.layout.point_item, parent,false);
-
             return new ViewHolder(view);
 
         }
-
         @Override
         public void onBindViewHolder(PointAdapter.ViewHolder holder, int position) {
             Point point = pointList.get(position);
             holder.bind(point);
-
         }
 
         @Override
         public int getItemCount() {
             return pointList.size();
         }
-
 
         public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
@@ -88,7 +92,6 @@ public class PointListFragment extends Fragment {
             private ImageButton showOnTheMap;
 
             private TextView pointDescription;
-
             private TextView temperature;
             private TextView pressure;
             private TextView humidity;
@@ -123,14 +126,13 @@ public class PointListFragment extends Fragment {
 //                pointDescription.setText(point.getDescription());
 
             }
-
             @Override
             public void onClick(View view) {
 
                 Log.v(TAG, "Нажатие" + point.getName());
-
+                Intent intent = PointActivity.newIntent(getActivity(), point.getUuid());
+                startActivity(intent);
             }
         }
     }
-
 }

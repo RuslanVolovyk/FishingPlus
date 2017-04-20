@@ -2,8 +2,8 @@ package com.softgroup.fishingplus.screens;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 
 import com.softgroup.fishingplus.R;
 
@@ -11,7 +11,7 @@ import com.softgroup.fishingplus.R;
  * Created by Администратор on 19.04.2017.
  */
 
-public abstract class BaseFragmentActivity extends FragmentActivity {
+public abstract class BaseFragmentActivity extends AppCompatActivity {
     protected abstract Fragment createFragment();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
