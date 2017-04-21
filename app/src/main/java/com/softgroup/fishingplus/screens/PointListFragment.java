@@ -8,6 +8,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -29,6 +32,12 @@ public class PointListFragment extends Fragment {
     private static final String TAG = PointListFragment.class.getName();
     private RecyclerView recyclerView;
     private PointAdapter pointAdapter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     @Nullable
     @Override
@@ -57,6 +66,27 @@ public class PointListFragment extends Fragment {
         super.onResume();
         updateUI();
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.add_points, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_create_new_points:
+                Point point = new Point();
+                PointSingle.get(getActivity()).addPoint(point);
+                Intent intent = PointActivity.newIntent(getActivity(), point.getUuid());
+                startActivity(intent);
+
+                break;
+        }
+        return true;
+    }
+
 
     public class PointAdapter extends RecyclerView.Adapter<PointAdapter.ViewHolder> {
         private List<Point> pointList;
@@ -135,4 +165,5 @@ public class PointListFragment extends Fragment {
             }
         }
     }
+
 }
