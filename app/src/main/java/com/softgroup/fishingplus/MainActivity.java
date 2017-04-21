@@ -8,12 +8,15 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -46,11 +49,9 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
-
 import static com.softgroup.fishingplus.R.id.button_send;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = MainActivity.class.getName();
     public static final int DEFAULT_MSG_LENGTH_LIMIT = 1000;
@@ -79,7 +80,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -151,23 +164,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        imageButtonWeather = (ImageButton) findViewById(R.id.image_button_weather);
-        imageButtonWeather.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intentWeather = new Intent(MainActivity.this, WeatherActivity.class);
-                startActivity(intentWeather);
-            }
-        });
-
-        imageButtonMaps = (ImageButton) findViewById(R.id.image_button_maps);
-        imageButtonMaps.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intentMaps = new Intent(MainActivity.this, MapsActivity.class);
-                startActivity(intentMaps);
-            }
-        });
     }
 
     @Override
@@ -288,33 +284,7 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.sign_out_menu:
-                AuthUI.getInstance().signOut(this);
-                break;
-            case R.id.add_foto_from_galery:
-                addPhotoFromGalery();
-                break;
-            case R.id.add_foto_from_camera:
-                addPhotoFromCamera();
-                break;
-            case R.id.menu_my_points:
-                Intent intent = new Intent(MainActivity.this, PointsListActivity.class);
-                startActivity(intent);
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
     private void addPhotoFromCamera() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (intent.resolveActivity(getPackageManager()) != null) {
@@ -326,5 +296,49 @@ public class MainActivity extends AppCompatActivity {
         intent.setType("image/jpeg");
         intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
         startActivityForResult(Intent.createChooser(intent, "Complete action using"), RC_PHOTO_PICKER);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.drawer_map) {
+            Intent intentMaps = new Intent(MainActivity.this, MapsActivity.class);
+            startActivity(intentMaps);
+
+        } else if (id == R.id.drawer_add_photo_from_gallery) {
+            addPhotoFromGalery();
+
+
+        } else if (id == R.id.drawer_add_photo_from_camera) {
+            addPhotoFromCamera();
+
+
+        } else if (id == R.id.menu_my_points) {
+            Intent intent = new Intent(MainActivity.this, PointsListActivity.class);
+            startActivity(intent);
+
+        } else if (id == R.id.drawer_weather) {
+            Intent intentWeather = new Intent(MainActivity.this, WeatherActivity.class);
+            startActivity(intentWeather);
+
+        } else if (id == R.id.sign_out_menu) {
+            AuthUI.getInstance().signOut(this);
+
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 }

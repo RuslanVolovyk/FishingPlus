@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Рыбалка Plus</string>
     <string name="sign_out">Выйти</string>
-    <string name="maps">Maps</string>
+    <string name="maps">Карта</string>
     <string name="weather">Weather</string>
     <string name="send_a_message">Отправить</string>
     <string name="title_activity_maps">Map</string>
@@ -27,6 +27,8 @@
     <string name="time">time</string>
     <string name="point_description_label">Point Description</string>
     <string name="point_date">Дата создания точки</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Closed</string>
 
 
 </resources>

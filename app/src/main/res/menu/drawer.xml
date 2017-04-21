@@ -3,28 +3,32 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/drawer_map"
+            android:icon="@mipmap/maps_icon"
+            android:title="@string/maps" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/drawer_add_photo_from_gallery"
+            android:icon="@mipmap/ic_add_a_photo_black_24dp"
+            android:title="@string/add_foto_from_galery" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/drawer_add_photo_from_camera"
+            android:icon="@drawable/camera_alt_black_24dp"
+            android:title="@string/add_foto_from_camera" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
+            android:id="@+id/menu_my_points"
+            android:icon="@drawable/ic_place_black_24dp"
+            android:title="@string/my_point" />
+        <item
+            android:id="@+id/drawer_weather"
+            android:icon="@mipmap/sunny"
             android:title="Tools" />
     </group>
 
     <item android:title="Ауторизация">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
+                android:id="@+id/sign_out_menu"
+                android:icon="@drawable/ic_person_outline_black_24dp"
                 android:title="@string/sign_out" />
 
         </menu>
