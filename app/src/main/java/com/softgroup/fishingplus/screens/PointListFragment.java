@@ -17,7 +17,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.softgroup.fishingplus.R;
-import com.softgroup.fishingplus.Utils;
 import com.softgroup.fishingplus.models.Point;
 import com.softgroup.fishingplus.models.PointSingle;
 
@@ -149,7 +148,7 @@ public class PointListFragment extends Fragment {
             public void bind(Point point) {
                 this.point = point;
                 pointName.setText(point.getName());
-                time.setText(Utils.getCurrentDate());
+                time.setText(point.getDate().toString());
               //  showOnTheMap.
 
 

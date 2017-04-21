@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.softgroup.fishingplus.R;
-import com.softgroup.fishingplus.Utils;
 import com.softgroup.fishingplus.models.Point;
 import com.softgroup.fishingplus.models.PointSingle;
 
@@ -90,7 +89,7 @@ public class PointFragment extends Fragment {
         });
 
         datePoint = (TextView) view.findViewById(R.id.point_date);
-        datePoint.setText(Utils.getCurrentDate());
+        datePoint.setText(point.getDate().toString());
 
         return view;
     }

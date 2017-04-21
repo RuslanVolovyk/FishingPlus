@@ -39,9 +39,23 @@
             android:layout_marginRight="16dp"
             android:hint="@string/point_description_label_hint" />
 
+        <TextView
+            style="@style/AppTheme.AppBarOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lon" />
+
+        <TextView
+            style="@style/AppTheme.AppBarOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lat" />
+
+
     </LinearLayout>
 
     <LinearLayout
+        style="?android:listSeparatorTextViewStyle"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -49,33 +63,27 @@
 
         <TextView
             android:gravity="center"
-            style="?android:listSeparatorTextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/weather_conditions" />
 
         <TextView
-            style="?android:listSeparatorTextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/weather_temp" />
         <TextView
-            style="?android:listSeparatorTextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/pressure" />
         <TextView
-            style="?android:listSeparatorTextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/weather_humidity" />
         <TextView
-            style="?android:listSeparatorTextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/weather_cloudy" />
         <TextView
-            style="?android:listSeparatorTextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/weather_speed_wind" />

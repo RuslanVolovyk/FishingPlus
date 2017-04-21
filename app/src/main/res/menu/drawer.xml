@@ -21,10 +21,10 @@
         <item
             android:id="@+id/drawer_weather"
             android:icon="@mipmap/sunny"
-            android:title="Tools" />
+            android:title="@string/weather" />
     </group>
 
-    <item android:title="Ауторизация">
+    <item android:title="@string/auth">
         <menu>
             <item
                 android:id="@+id/sign_out_menu"

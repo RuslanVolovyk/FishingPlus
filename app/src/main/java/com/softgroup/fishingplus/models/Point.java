@@ -22,6 +22,7 @@ public class Point  {
     private String condition;
 
 
+
     public Point() {
        uuid =UUID.randomUUID();
         date = new Date();

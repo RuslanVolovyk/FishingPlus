@@ -2,9 +2,9 @@
     <string name="app_name">Рыбалка Plus</string>
     <string name="sign_out">Выйти</string>
     <string name="maps">Карта</string>
-    <string name="weather">Weather</string>
+    <string name="weather">Погода</string>
     <string name="send_a_message">Отправить</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps">Карта</string>
     <string name="weather_activity_name">Текущая погода</string>
     <string name="add_foto_from_camera">Добавить фото с камеры</string>
     <string name="add_foto_from_galery">Добавить фото с галереи</string>
@@ -25,10 +25,13 @@
     <string name="user_name">name</string>
     <string name="message_text">text</string>
     <string name="time">time</string>
-    <string name="point_description_label">Point Description</string>
+    <string name="point_description_label">Описание точки</string>
     <string name="point_date">Дата создания точки</string>
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Closed</string>
+    <string name="auth">Авторизация</string>
+    <string name="lon">Долгота</string>
+    <string name="lat">Широта</string>
 
 
 </resources>

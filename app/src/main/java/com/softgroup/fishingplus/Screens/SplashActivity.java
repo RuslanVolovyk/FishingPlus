@@ -11,12 +11,14 @@ import com.softgroup.fishingplus.MainActivity;
 public class SplashActivity extends AppCompatActivity {
 
 
-    private static final int SPLASH_LENGTH = 2000;
+    private static final int SPLASH_LENGTH = 20;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        WeatherActivity weatherActivity = new WeatherActivity();
 
 
          new Handler().postDelayed(new Runnable() {

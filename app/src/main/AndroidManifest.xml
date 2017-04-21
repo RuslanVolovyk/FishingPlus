@@ -46,7 +46,9 @@
             android:label="@string/title_activity_maps">
 
         </activity>
-        <activity android:name=".screens.PointsListActivity" />
+        <activity android:name=".screens.PointsListActivity"
+            android:parentActivityName=".MainActivity"/>
+
         <activity android:name=".screens.PointActivity"></activity>
     </application>
 
