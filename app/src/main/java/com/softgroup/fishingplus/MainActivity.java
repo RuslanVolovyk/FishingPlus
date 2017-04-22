@@ -41,6 +41,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.softgroup.fishingplus.models.FriendlyMessage;
 import com.softgroup.fishingplus.models.MessageAdapter;
+import com.softgroup.fishingplus.models.Weather;
 import com.softgroup.fishingplus.screens.MapsActivity;
 import com.softgroup.fishingplus.screens.PointsListActivity;
 import com.softgroup.fishingplus.screens.WeatherActivity;
@@ -50,6 +51,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.softgroup.fishingplus.R.id.button_send;
+import static com.softgroup.fishingplus.screens.SplashActivity.WEATHER;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseAuth.AuthStateListener authStateListener;
     public static String username;
     private SharedPreferences sharedPreferences;
+    private Weather weather;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +85,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -319,7 +324,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
 
         } else if (id == R.id.drawer_weather) {
+
+            weather = getIntent().getExtras().getParcelable(WEATHER);
+
+
             Intent intentWeather = new Intent(MainActivity.this, WeatherActivity.class);
+            intentWeather.putExtra(WEATHER, weather);
             startActivity(intentWeather);
 
         } else if (id == R.id.sign_out_menu) {
