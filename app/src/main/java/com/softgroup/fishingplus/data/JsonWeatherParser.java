@@ -29,10 +29,10 @@ public class JsonWeatherParser {
             //get sys data
 
             JSONObject sysObj = Utils.getObject("sys", jsonObject);
+
             weather.setCountry(Utils.getString("country", sysObj));
             weather.setSunrise(Utils.getInt("sunrise", sysObj));
             weather.setSunset(Utils.getInt("sunset", sysObj));
-
             //get  cityname data from main jsonObject
             //  place.setLastUpdate(Utils.getInt("dt", jsonObject));
             weather.setCity(Utils.getString("name", jsonObject));
@@ -42,6 +42,7 @@ public class JsonWeatherParser {
             //get weather
 
             JSONArray weatherArray = jsonObject.getJSONArray("weather");
+
             JSONObject weatherObj = weatherArray.getJSONObject(0);
             weather.setWeatherId(Utils.getInt("id", weatherObj));
             weather.setDescription(Utils.getString("description", weatherObj));
@@ -63,8 +64,8 @@ public class JsonWeatherParser {
             weather.setSpeed(Utils.getFloat("speed", windObj));
 
             //get clouds data
-            JSONObject cloudsObj = Utils.getObject("clouds", jsonObject);
-            weather.setPrecipitation(Utils.getInt("all", cloudsObj));
+//            JSONObject cloudsObj = Utils.getObject("clouds", jsonObject);
+//            weather.setPrecipitation(Utils.getInt("all", cloudsObj));
 
             return weather;
 

@@ -15,6 +15,7 @@ import com.softgroup.fishingplus.R;
 import com.softgroup.fishingplus.data.GPSCurrentPosition;
 import com.softgroup.fishingplus.models.Point;
 import com.softgroup.fishingplus.models.PointSingle;
+import com.softgroup.fishingplus.models.Weather;
 
 import java.util.UUID;
 
@@ -30,6 +31,8 @@ public class PointFragment extends Fragment {
     private GPSCurrentPosition gpsCurrentPosition;
     private TextView lon;
     private TextView lat;
+
+    Weather weather;
 
 
     private TextView pointDescription;
@@ -66,6 +69,7 @@ public class PointFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_point_detail, container,false);
+
 
         editTextName = (EditText) view.findViewById(R.id.point_title_label_hint);
         editTextName.setText(point.getName());
