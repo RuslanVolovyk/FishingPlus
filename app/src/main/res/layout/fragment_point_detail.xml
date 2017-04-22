@@ -39,17 +39,6 @@
             android:layout_marginRight="16dp"
             android:hint="@string/point_description_label_hint" />
 
-        <TextView
-            style="@style/AppTheme.AppBarOverlay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lon" />
-
-        <TextView
-            style="@style/AppTheme.AppBarOverlay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lat" />
 
 
     </LinearLayout>
@@ -68,25 +57,41 @@
             android:text="@string/weather_conditions" />
 
         <TextView
+            android:id="@+id/point_temperatura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/weather_temp" />
         <TextView
+            android:id="@+id/point_pressure"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/pressure" />
         <TextView
+            android:id="@+id/point_humidity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/weather_humidity" />
         <TextView
+            android:id="@+id/point_condition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/weather_cloudy" />
         <TextView
+            android:id="@+id/point_wind_speed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/weather_speed_wind" />
+        <TextView
+            android:id="@+id/point_longituda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lon" />
+
+        <TextView
+            android:id="@+id/point_lantituda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lat" />
 
         <TextView
             android:id="@+id/point_date"

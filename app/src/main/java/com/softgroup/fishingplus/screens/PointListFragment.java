@@ -36,6 +36,8 @@ public class PointListFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
+
     }
 
     @Nullable
@@ -47,15 +49,16 @@ public class PointListFragment extends Fragment {
         updateUI();
         return view;
     }
-    public void updateUI(){
+
+    public void updateUI() {
 
         PointSingle pointSingle = PointSingle.get(getActivity());
-        List<Point>pointList=pointSingle.getPointList();
+        List<Point> pointList = pointSingle.getPointList();
 
-        if(pointAdapter == null){
+        if (pointAdapter == null) {
             pointAdapter = new PointAdapter(pointList);
             recyclerView.setAdapter(pointAdapter);
-        }else {
+        } else {
             pointAdapter.notifyDataSetChanged();
         }
     }
@@ -74,7 +77,7 @@ public class PointListFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.menu_create_new_points:
                 Point point = new Point();
                 PointSingle.get(getActivity()).addPoint(point);
@@ -98,11 +101,12 @@ public class PointListFragment extends Fragment {
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                inflater = LayoutInflater.from(getActivity());
-                View view = inflater.inflate(R.layout.point_item, parent,false);
+            inflater = LayoutInflater.from(getActivity());
+            View view = inflater.inflate(R.layout.point_item, parent, false);
             return new ViewHolder(view);
 
         }
+
         @Override
         public void onBindViewHolder(PointAdapter.ViewHolder holder, int position) {
             Point point = pointList.get(position);
@@ -114,24 +118,12 @@ public class PointListFragment extends Fragment {
             return pointList.size();
         }
 
-        public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
             private TextView pointName;
             private TextView time;
             private ImageButton showOnTheMap;
-
-            private TextView pointDescription;
-            private TextView temperature;
-            private TextView pressure;
-            private TextView humidity;
-            private TextView wind;
-            private TextView condition;
-
-            Point point;
-
-            public ViewHolder create(LayoutInflater inflater, ViewGroup parent) {
-                return new ViewHolder(inflater.inflate(R.layout.point_item, parent, false));
-            }
+            private Point point;
 
 
             public ViewHolder(View itemView) {
@@ -139,30 +131,44 @@ public class PointListFragment extends Fragment {
                 itemView.setOnClickListener(this);
                 pointName = (TextView) itemView.findViewById(R.id.text_view_name_point);
                 time = (TextView) itemView.findViewById(R.id.text_view_date_point);
-                showOnTheMap = (ImageButton)itemView.findViewById(R.id.image_button_show_location_on_the_map);
+                showOnTheMap = (ImageButton) itemView.findViewById(R.id.image_button_show_location_on_the_map);
 
-//
-//            pointDescription = (TextView) itemView.findViewById(R.id.point_description);
+                showOnTheMap.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //TODO: переход на фрагмент карты с координатами точки
+
+                        Log.v(TAG, "Нажатие " + "Координаты лат " + point.getLat());
+                        Log.v(TAG, "Нажатие " + "Координаты лон " + point.getLon());
+                    }
+                });
+
             }
 
             public void bind(Point point) {
                 this.point = point;
                 pointName.setText(point.getName());
                 time.setText(point.getDate().toString());
-              //  showOnTheMap.
-
-
-//                pointDescription.setText(point.getDescription());
-
             }
+
             @Override
             public void onClick(View view) {
 
-                Log.v(TAG, "Нажатие" + point.getName());
+                Log.v(TAG, "Нажатие " + "Описние " + point.getDescription());
+                Log.v(TAG, "Нажатие " + "Дата " + point.getDate());
+                Log.v(TAG, "Нажатие " + "Название " + point.getName());
+                Log.v(TAG, "Нажатие " + "ІД " + point.getUuid());
+                Log.v(TAG, "Нажатие " + "Облачность " + point.getCondition());
+                Log.v(TAG, "Нажатие " + "Влажность " + point.getHumidity());
+                Log.v(TAG, "Нажатие " + "Температура " + point.getTemperature());
+                Log.v(TAG, "Нажатие " + "Ветер " + point.getWind());
+                Log.v(TAG, "Нажатие " + "Координаты лат " + point.getLat());
+                Log.v(TAG, "Нажатие " + "Координаты лон " + point.getLon());
+
+
                 Intent intent = PointActivity.newIntent(getActivity(), point.getUuid());
                 startActivity(intent);
             }
         }
     }
-
 }

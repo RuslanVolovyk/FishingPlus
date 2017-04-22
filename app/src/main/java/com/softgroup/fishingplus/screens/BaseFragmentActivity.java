@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.softgroup.fishingplus.R;
+import com.softgroup.fishingplus.data.GPSCurrentPosition;
 
 /**
  * Created by Администратор on 19.04.2017.
@@ -17,6 +18,7 @@ public abstract class BaseFragmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment);
+
 
         FragmentManager fragmentManager = getSupportFragmentManager();
 

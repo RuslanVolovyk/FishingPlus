@@ -43,7 +43,7 @@ public class MessageAdapter extends ArrayAdapter<FriendlyMessage> {
 
         boolean isPhoto = friendlyMessage.getPhoto() != null;
         if (isPhoto) {
-            messageTextView.setVisibility(View.GONE);
+            messageTextView.setVisibility(View.INVISIBLE);
             messageImageView.setVisibility(View.VISIBLE);
             Glide.with(messageImageView.getContext())
                     .load(friendlyMessage.getPhoto())
@@ -51,7 +51,7 @@ public class MessageAdapter extends ArrayAdapter<FriendlyMessage> {
 
         } else {
             messageTextView.setVisibility(View.VISIBLE);
-            messageImageView.setVisibility(View.GONE);
+            messageImageView.setVisibility(View.INVISIBLE);
             messageTextView.setText(friendlyMessage.getText());
         }
         nameUser.setText(friendlyMessage.getName());

@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.softgroup.fishingplus.R;
+import com.softgroup.fishingplus.data.GPSCurrentPosition;
 import com.softgroup.fishingplus.models.Point;
 import com.softgroup.fishingplus.models.PointSingle;
 
@@ -26,6 +27,18 @@ public class PointFragment extends Fragment {
     private EditText editTextName;
     private EditText editTextDescription;
     private TextView datePoint;
+    private GPSCurrentPosition gpsCurrentPosition;
+    private TextView lon;
+    private TextView lat;
+
+
+    private TextView pointDescription;
+    private TextView temperature;
+    private TextView pressure;
+    private TextView humidity;
+    private TextView wind;
+    private TextView condition;
+
 
     public static final String ARGUMENTS = "id";
 
@@ -35,7 +48,6 @@ public class PointFragment extends Fragment {
 
         PointFragment pointFragment = new PointFragment();
         pointFragment.setArguments(arg);
-
         return pointFragment;
     }
 
@@ -45,6 +57,7 @@ public class PointFragment extends Fragment {
 
         UUID uuid = (UUID)getArguments().getSerializable(ARGUMENTS);
         point= PointSingle.get(getActivity()).getPoint(uuid);
+
 
 
     }
@@ -90,6 +103,11 @@ public class PointFragment extends Fragment {
 
         datePoint = (TextView) view.findViewById(R.id.point_date);
         datePoint.setText(point.getDate().toString());
+
+        lat = (TextView) view.findViewById(R.id.point_lantituda);
+      //  lat.setText(String.valueOf("lat"+point.getLat()));
+        lon = (TextView) view.findViewById(R.id.point_longituda);
+       // lon.setText(String.valueOf("lon"+point.getLon()));
 
         return view;
     }

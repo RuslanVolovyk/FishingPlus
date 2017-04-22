@@ -1,5 +1,7 @@
 package com.softgroup.fishingplus.models;
 
+import com.softgroup.fishingplus.data.GPSCurrentPosition;
+
 import java.util.Date;
 import java.util.UUID;
 
@@ -9,12 +11,14 @@ import java.util.UUID;
 
 public class Point  {
 
+    private GPSCurrentPosition gpsCurrentPosition;
+    Weather weather;
     private UUID uuid;
     private String name;
     private Date date;
     private String description;
-    private String lat;
-    private String lon;
+    private double lat;
+    private double lon;
     private String temperature;
     private String pressure;
     private String humidity;
@@ -36,19 +40,21 @@ public class Point  {
         this.uuid = uuid;
     }
 
-    public String getLat() {
+    public double getLat() {
+
         return lat;
     }
 
-    public void setLat(String lat) {
+    public void setLat(double lat) {
         this.lat = lat;
     }
 
-    public String getLon() {
+    public double getLon() {
+
         return lon;
     }
 
-    public void setLon(String lon) {
+    public void setLon(double lon) {
         this.lon = lon;
     }
 
