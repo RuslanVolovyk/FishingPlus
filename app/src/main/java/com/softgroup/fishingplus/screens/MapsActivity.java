@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -30,14 +31,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
+
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 101;
+    private static final String TAG = "Referee";
 
     private GoogleMap mMap;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
     Marker mCurrLocationMarker;
     LocationRequest mLocationRequest;
-
+    double   longitude;
+    double   latitude;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +53,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
     }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -105,6 +111,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         //Place current location marker
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        latitude = location.getLatitude();
+        longitude = location.getLongitude();
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
         markerOptions.title(MainActivity.getUsername());
@@ -118,6 +126,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (mGoogleApiClient != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }
+    }
+    public double getLatitude() {
+         latitude = mLastLocation.getLatitude();
+        Log.v(TAG, "lat " + latitude );
+
+
+        // return latitude
+        return latitude;
+    }
+
+
+    public double getLongitude() {
+         longitude = mLastLocation.getLongitude();
+        Log.v(TAG, " lon " +  longitude );
+
+
+        // return longitude
+        return longitude;
     }
 
     @Override

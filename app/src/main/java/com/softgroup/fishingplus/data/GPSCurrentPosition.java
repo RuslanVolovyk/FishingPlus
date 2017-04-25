@@ -12,7 +12,7 @@ import android.util.Log;
 
 
 public class GPSCurrentPosition extends Service implements LocationListener {
-    private final Context mContext;
+   final private Context mContext;
     boolean isGPSEnabled = false;
     boolean isNetworkEnabled = false;
     Location location; // location
@@ -20,19 +20,18 @@ public class GPSCurrentPosition extends Service implements LocationListener {
     double longitude; // longitude
 
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
-    private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1; // 1 minute
+    private static final long MIN_TIME_BW_UPDATES = 6000 ; // 1 minute
 
     protected LocationManager locationManager;
 
-    public GPSCurrentPosition(Context context) {
+    public GPSCurrentPosition( Context context) {
         this.mContext = context;
         getLocation();
     }
 
     public Location getLocation() {
         try {
-            locationManager = (LocationManager) mContext
-                    .getSystemService(LOCATION_SERVICE);
+            locationManager = (LocationManager)mContext.getSystemService(LOCATION_SERVICE);
 
             isGPSEnabled = locationManager
                     .isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -137,3 +136,4 @@ public class GPSCurrentPosition extends Service implements LocationListener {
         return null;
     }
 }
+//

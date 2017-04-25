@@ -48,9 +48,11 @@
 
         </activity>
         <activity android:name=".screens.PointsListActivity"
-            android:parentActivityName=".MainActivity"/>
+            />
 
-        <activity android:name=".screens.PointActivity"></activity>
+        <activity android:name=".screens.PointActivity"
+            android:parentActivityName=".screens.PointsListActivity">
+        </activity>
     </application>
 
 </manifest>

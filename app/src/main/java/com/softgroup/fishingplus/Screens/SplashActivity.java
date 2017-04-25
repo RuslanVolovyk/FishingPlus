@@ -41,14 +41,20 @@ public class SplashActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
 
         GPSCurrentPosition gpsCurrentPosition = new GPSCurrentPosition(SplashActivity.this);
-        location = gpsCurrentPosition.getLocation();
+        double lat = 0;
+        double lon = 0;
+        try {
+            location = gpsCurrentPosition.getLocation();
 
-        if (location == null) {
-            Log.v(TAG, "Location == null");
+            if (location == null) {
+                Log.v(TAG, "Location == null");
 
+            }
+            lat = location.getLatitude();
+            lon = location.getLongitude();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        double lat = location.getLatitude();
-        double lon = location.getLongitude();
         WeatherTask weatherTask = new WeatherTask();
         weatherTask.execute(String.format("?lat=%.4f&lon=%.4f&units=metric", lat, lon));
 

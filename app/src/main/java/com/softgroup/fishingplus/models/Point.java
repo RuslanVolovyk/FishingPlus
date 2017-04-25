@@ -1,36 +1,34 @@
 package com.softgroup.fishingplus.models;
 
-import com.softgroup.fishingplus.data.GPSCurrentPosition;
-
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
  * Created by Администратор on 16.04.2017.
  */
 
-public class Point  {
+public class Point implements Serializable {
 
-    private GPSCurrentPosition gpsCurrentPosition;
-    Weather weather;
+    Point point;
     private UUID uuid;
     private String name;
     private Date date;
     private String description;
     private double lat;
     private double lon;
-    private String temperature;
-    private String pressure;
-    private String humidity;
-    private String wind;
+    private double temperature;
+    private float pressure;
+    private float humidity;
+    private float wind;
     private String condition;
-
-
+    List<Point>pointList;
 
     public Point() {
-       uuid =UUID.randomUUID();
         date = new Date();
     }
+
 
     public UUID getUuid() {
         return uuid;
@@ -51,6 +49,7 @@ public class Point  {
 
     public double getLon() {
 
+
         return lon;
     }
 
@@ -58,35 +57,35 @@ public class Point  {
         this.lon = lon;
     }
 
-    public String getTemperature() {
+    public double getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(String temperature) {
+    public void setTemperature(double temperature) {
         this.temperature = temperature;
     }
 
-    public String getPressure() {
+    public float getPressure() {
         return pressure;
     }
 
-    public void setPressure(String pressure) {
+    public void setPressure(float pressure) {
         this.pressure = pressure;
     }
 
-    public String getHumidity() {
+    public float getHumidity() {
         return humidity;
     }
 
-    public void setHumidity(String humidity) {
+    public void setHumidity(float humidity) {
         this.humidity = humidity;
     }
 
-    public String getWind() {
+    public float getWind() {
         return wind;
     }
 
-    public void setWind(String wind) {
+    public void setWind(float wind) {
         this.wind = wind;
     }
 

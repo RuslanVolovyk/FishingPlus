@@ -51,49 +51,58 @@
         android:orientation="vertical">
 
         <TextView
+            android:textColor="#000"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/weather_conditions" />
 
         <TextView
+            android:textColor="#000"
             android:id="@+id/point_temperatura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/weather_temp" />
         <TextView
+            android:textColor="#000"
             android:id="@+id/point_pressure"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/pressure" />
         <TextView
+            android:textColor="#000"
             android:id="@+id/point_humidity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/weather_humidity" />
         <TextView
+            android:textColor="#000"
             android:id="@+id/point_condition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/weather_cloudy" />
         <TextView
+            android:textColor="#000"
             android:id="@+id/point_wind_speed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/weather_speed_wind" />
         <TextView
+            android:textColor="#000"
             android:id="@+id/point_longituda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/lon" />
 
         <TextView
+            android:textColor="#000"
             android:id="@+id/point_lantituda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/lat" />
 
         <TextView
+            android:textColor="#000"
             android:id="@+id/point_date"
             android:textStyle="bold|italic"
             android:gravity="center"

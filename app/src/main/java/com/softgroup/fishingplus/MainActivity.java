@@ -3,6 +3,7 @@ package com.softgroup.fishingplus;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static String username;
     private SharedPreferences sharedPreferences;
     private Weather weather;
+    Location location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +88,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+//        PointLocation pointLocation = new PointLocation();
+//         location  = pointLocation.get();
+//
+//        double ggg = location.getLatitude();
+//
+//        Log.v("Referee", "lat" + ggg);
+        weather = getIntent().getExtras().getParcelable(WEATHER);
 
 
 
@@ -320,7 +329,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         } else if (id == R.id.menu_my_points) {
+            weather = getIntent().getExtras().getParcelable(WEATHER);
+
             Intent intent = new Intent(MainActivity.this, PointsListActivity.class);
+            intent.putExtra(WEATHER, weather);
+
             startActivity(intent);
 
         } else if (id == R.id.drawer_weather) {

@@ -19,6 +19,13 @@ public class Utils {
     public static final String BASE_URL = "http://api.openweathermap.org/data/2.5/weather";
 
 
+//    public static double getLat (){
+//        GPSCurrentPosition gpsCurrentPosition = new GPSCurrentPosition();
+//        location = gpsCurrentPosition.getLocation();
+//        lat = location.getLatitude();
+//        return lat;
+//    }
+
     public static JSONObject getObject (String string, JSONObject jsonObject) throws JSONException {
         JSONObject object = jsonObject.getJSONObject(string);
 
