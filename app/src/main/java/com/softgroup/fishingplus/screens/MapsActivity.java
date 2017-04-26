@@ -27,25 +27,34 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.softgroup.fishingplus.MainActivity;
 import com.softgroup.fishingplus.R;
 
+import static com.softgroup.fishingplus.screens.PointListFragment.LAT;
+import static com.softgroup.fishingplus.screens.PointListFragment.LON;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
-
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 101;
-    private static final String TAG = "Referee";
+    private static final String TAG = MapsActivity.class.getName();
 
     private GoogleMap mMap;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
     Marker mCurrLocationMarker;
     LocationRequest mLocationRequest;
-    double   longitude;
-    double   latitude;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        double lat = getIntent().getDoubleExtra(LAT,0.0);
+        double lon = getIntent().getDoubleExtra(LON,0.0);
+
+        Log.v(TAG, "Нажатие " + "Ветер " + lat);
+        Log.v(TAG, "Нажатие " + "Ветер " + lon);
+
+        showOntheMap(lat, lon);
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission();
@@ -53,10 +62,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
     }
 
-
+    public void showOntheMap(double lat, double lon){
+        MarkerOptions marker = new MarkerOptions().position(new LatLng(lat, lon)).title("Hello Maps ");
+        mMap.addMarker(marker);
+    }
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -111,8 +122,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         //Place current location marker
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        latitude = location.getLatitude();
-        longitude = location.getLongitude();
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
         markerOptions.title(MainActivity.getUsername());
@@ -126,24 +135,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (mGoogleApiClient != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }
-    }
-    public double getLatitude() {
-         latitude = mLastLocation.getLatitude();
-        Log.v(TAG, "lat " + latitude );
-
-
-        // return latitude
-        return latitude;
-    }
-
-
-    public double getLongitude() {
-         longitude = mLastLocation.getLongitude();
-        Log.v(TAG, " lon " +  longitude );
-
-
-        // return longitude
-        return longitude;
     }
 
     @Override
