@@ -32,30 +32,43 @@ import static com.softgroup.fishingplus.screens.SplashActivity.WEATHER;
  */
 
 public class PointListFragment extends Fragment {
-    Weather weather;
-    Location location;
-
-
     private static final String TAG = PointListFragment.class.getName();
     public static final String LAT = "lat";
     public static final String LON = "lon";
+    private static final String WETHER_DATA = "weather data";
     private RecyclerView recyclerView;
     private PointAdapter pointAdapter;
+    private Weather weather;
+    private Location location;
+//    private FirebaseDatabase database;
+//    private DatabaseReference ref;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
+//        if (savedInstanceState != null) {
+//
+//            weather = savedInstanceState.getParcelable(WETHER_DATA);
+////
+////        database = FirebaseDatabase.getInstance();
+////        ref = database.getReference().child("point");
+//        }
+        weather = getArguments().getParcelable(WEATHER);
 
     }
+
+//    @Override
+//    public void onSaveInstanceState(Bundle outState) {
+//        outState.putParcelable(WETHER_DATA, weather);
+//        super.onSaveInstanceState(outState);
+//    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.point_list, container, false);
-
-        weather = getArguments().getParcelable(WEATHER) ;
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_points);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -63,7 +76,40 @@ public class PointListFragment extends Fragment {
         return view;
     }
 
+
+
+
+//    public void updateUI() {
+//        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+//
+//        Log.v(TAG, "database" + database);
+//
+//        database.child("point").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                List pointlist = new ArrayList<>();
+//                for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
+//                    Point point = noteDataSnapshot.getValue(Point.class);
+//                    pointlist.add(point);
+//                }
+//
+//                pointAdapter.updateList(pointlist);
+//
+//
+//            }
+//
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//
+//        });
+//    }
     public void updateUI() {
+
+
+
 
         PointSingle pointSingle = PointSingle.get(getActivity());
         List<Point> pointList = pointSingle.getPointList();
@@ -96,10 +142,10 @@ public class PointListFragment extends Fragment {
                 GPSCurrentPosition gpsCurrentPosition = new GPSCurrentPosition(getActivity());
                 location = gpsCurrentPosition.getLocation();
 
-                double lat=location.getLatitude();
-                double lon=location.getLongitude();
-                Log.v(TAG, "Нажатие " + "Ветер " + location.getLatitude());
-                Log.v(TAG, "Нажатие " + "Ветер " + location.getLongitude());
+                double lat = location.getLatitude();
+                double lon = location.getLongitude();
+                Log.v(TAG, "Нажатие " + "Ветер " + lat);
+                Log.v(TAG, "Нажатие " + "Ветер " + lon);
 
 
                 Point point = new Point();
@@ -108,14 +154,17 @@ public class PointListFragment extends Fragment {
                 point.setHumidity(weather.getHuminity());
                 point.setWind(weather.getSpeed());
                 point.setPressure(weather.getPressure());
+                point.setLon(lon);
+                point.setLat(lat);
 
-                point.setLon(location.getLongitude());
-                point.setLat(location.getLatitude());
+
                 PointSingle.get(getActivity()).addPoint(point);
                 Intent intent = PointActivity.newIntent(getActivity(), point.getUuid());
                 startActivity(intent);
+                return true;
 
-                break;
+            default:
+
         }
         return true;
     }
@@ -149,6 +198,7 @@ public class PointListFragment extends Fragment {
             return pointList.size();
         }
 
+
         public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
             private TextView pointName;
@@ -167,15 +217,12 @@ public class PointListFragment extends Fragment {
                 showOnTheMap.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
-                        //TODO: переход на фрагмент карты с координатами точки
                         double lat = point.getLat();
                         double lon = point.getLon();
                         Intent intent = new Intent(getActivity(), MapsActivity.class);
                         intent.putExtra(LAT, lat);
                         intent.putExtra(LON, lon);
                         startActivity(intent);
-
                         Log.v(TAG, "Нажатие " + "Координаты лат " + point.getLat());
                         Log.v(TAG, "Нажатие " + "Координаты лон " + point.getLon());
                     }
@@ -186,7 +233,7 @@ public class PointListFragment extends Fragment {
             public void bind(Point point) {
                 this.point = point;
                 pointName.setText(point.getName());
-                time.setText(android.text.format.DateFormat.format("dd-MM-yyyy (HH:mm:ss)",point.getDate()));
+                time.setText(android.text.format.DateFormat.format("dd-MM-yyyy (HH:mm:ss)", point.getDate()));
             }
 
             @Override

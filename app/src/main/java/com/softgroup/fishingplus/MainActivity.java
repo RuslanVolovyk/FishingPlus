@@ -3,7 +3,6 @@ package com.softgroup.fishingplus;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -14,7 +13,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -22,7 +20,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -65,9 +62,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private EditText mMessageEditText;
     private ProgressBar mProgressBar;
     private ListView mMessageListView;
-    private ImageButton imageButtonWeather;
-    private ImageButton imageButtonMaps;
 
+    List<AuthUI.IdpConfig> providers;
     private ChildEventListener childEventListener;
     private DatabaseReference messagesDatabaseReference;
     private FirebaseDatabase firebaseDatabase;
@@ -79,28 +75,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static String username;
     private SharedPreferences sharedPreferences;
     private Weather weather;
-    Location location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-//        PointLocation pointLocation = new PointLocation();
-//         location  = pointLocation.get();
-//
-//        double ggg = location.getLatitude();
-//
-//        Log.v("Referee", "lat" + ggg);
         weather = getIntent().getExtras().getParcelable(WEATHER);
 
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, null, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -147,7 +136,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
         mSendButton = (Button) findViewById(R.id.button_send);
-
         mSendButton = (Button) findViewById(button_send);
         mSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,7 +147,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -167,16 +154,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (user != null) {
                     onSignedInInitialize(user.getDisplayName());
                 } else {
+                    providers.add(new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build());
+                    providers.add(new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build());
+                    providers.add(new AuthUI.IdpConfig.Builder(AuthUI.FACEBOOK_PROVIDER).build());
                     startActivityForResult(AuthUI.getInstance()
                             .createSignInIntentBuilder()
                             .setIsSmartLockEnabled(false)
-                            .setProviders(AuthUI.EMAIL_PROVIDER,
-                                    AuthUI.FACEBOOK_PROVIDER,
-                                    AuthUI.GOOGLE_PROVIDER)
+                            .setProviders(providers)
                             .build(), RC_SIGN_IN);
                 }
             }
         };
+        providers = new ArrayList<>();
+
 
     }
 
@@ -225,19 +215,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     messagesDatabaseReference.push().setValue(friendlyMessage);
                 }
             });
-
-
         }
 
     }
+
     private void onSignedInInitialize(String displayName) {
         username = displayName;
         attachDatabaseReadListener();
     }
+
     public static String getUsername() {
         String name = username;
         return name;
     }
+
     private void attachDatabaseReadListener() {
         if (childEventListener == null) {
             childEventListener = new ChildEventListener() {
@@ -266,12 +257,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             messagesDatabaseReference.addChildEventListener(childEventListener);
         }
     }
+
     private void detachDatabaseListener() {
         if (childEventListener != null) {
             messagesDatabaseReference.removeEventListener(childEventListener);
             childEventListener = null;
         }
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -286,7 +279,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         detachDatabaseListener();
         messageAdapter.clear();
     }
-
     @Override
     public void onResume() {
         super.onResume();
@@ -298,13 +290,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onDestroy();
     }
 
-
     private void addPhotoFromCamera() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
         }
     }
+
     public void addPhotoFromGalery() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/jpeg");
@@ -323,7 +315,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.drawer_add_photo_from_gallery) {
             addPhotoFromGalery();
 
-
         } else if (id == R.id.drawer_add_photo_from_camera) {
             addPhotoFromCamera();
 
@@ -340,15 +331,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             weather = getIntent().getExtras().getParcelable(WEATHER);
 
-
             Intent intentWeather = new Intent(MainActivity.this, WeatherActivity.class);
             intentWeather.putExtra(WEATHER, weather);
             startActivity(intentWeather);
 
         } else if (id == R.id.sign_out_menu) {
             AuthUI.getInstance().signOut(this);
-
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

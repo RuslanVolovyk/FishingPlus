@@ -20,7 +20,11 @@ public class PointsListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fragment);
 
 
-        weather = getIntent().getExtras().getParcelable(WEATHER);
+        try {
+            weather = getIntent().getExtras().getParcelable(WEATHER);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         Bundle bundle = new Bundle();

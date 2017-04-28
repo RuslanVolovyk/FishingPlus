@@ -1,98 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="2">
-
-
-    <LinearLayout
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical">
+    android:fillViewport="true">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/activity_vertical_margin"
+    android:orientation="vertical">
 
         <TextView
-            android:gravity="center"
-            style="?android:listSeparatorTextViewStyle"
+            style="@style/Base.TextAppearance.AppCompat.Body2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/point_title_label" />
-        <EditText
             android:gravity="center"
+            android:text="@string/point_title_label" />
+
+        <EditText
+            style="@style/Base.TextAppearance.AppCompat.Body2"
             android:id="@+id/point_title_label_hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="16dp"
-            android:hint="@string/point_title_label_hint" />
-        <TextView
             android:gravity="center"
-            style="?android:listSeparatorTextViewStyle"
+            android:hint="@string/point_title_label_hint" />
+
+        <TextView
+            style="@style/Base.TextAppearance.AppCompat.Body2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/point_description_label" />
-        <EditText
             android:gravity="center"
+            android:text="@string/point_description_label" />
+
+        <EditText
+            style="@style/Base.TextAppearance.AppCompat.Body2"
             android:id="@+id/point_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="16dp"
             android:hint="@string/point_description_label_hint" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical">
-
         <TextView
-            android:gravity="center"
-            style="?android:listSeparatorTextViewStyle"
+            style="@style/Base.DialogWindowTitle.AppCompat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="@string/weather_conditions" />
 
         <TextView
-            style="?android:listSeparatorTextViewStyle"
+            android:id="@+id/point_temperatura"
+            style="@style/Theme.AppCompat.Light"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/weather_temp" />
+
         <TextView
-            style="?android:listSeparatorTextViewStyle"
+            android:id="@+id/point_pressure"
+
+            style="@style/Theme.AppCompat.Light"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/pressure" />
+
         <TextView
-            style="?android:listSeparatorTextViewStyle"
+            android:id="@+id/point_humidity"
+
+            style="@style/Theme.AppCompat.Light"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/weather_humidity" />
+
         <TextView
-            style="?android:listSeparatorTextViewStyle"
+            android:id="@+id/point_condition"
+
+            style="@style/Theme.AppCompat.Light"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/weather_cloudy" />
+
         <TextView
-            style="?android:listSeparatorTextViewStyle"
+            android:id="@+id/point_wind_speed"
+
+            style="@style/Theme.AppCompat.Light"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/weather_speed_wind" />
+        <TextView
+            android:textColor="#000"
+            android:id="@+id/point_longituda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lon" />
+
+        <TextView
+            android:textColor="#000"
+            android:id="@+id/point_lantituda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lat" />
 
         <TextView
             android:id="@+id/point_date"
-            android:textStyle="bold|italic"
-            android:gravity="center"
             style="?android:textStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/point_date" />
-
-
-
-
-    </LinearLayout>
-
+            android:gravity="center"
+            android:text="@string/point_date"
+            android:textStyle="bold|italic" />
 
 </LinearLayout>
+        </ScrollView>

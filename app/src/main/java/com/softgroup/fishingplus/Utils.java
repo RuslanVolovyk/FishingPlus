@@ -1,7 +1,5 @@
 package com.softgroup.fishingplus;
 
-import android.widget.EditText;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -18,13 +16,6 @@ public class Utils {
     public static final String OPEN_WEATHER_MAP_API_KEY = "&appid=d3bf86bef1b2822625c633f6161032fe";
     public static final String BASE_URL = "http://api.openweathermap.org/data/2.5/weather";
 
-
-//    public static double getLat (){
-//        GPSCurrentPosition gpsCurrentPosition = new GPSCurrentPosition();
-//        location = gpsCurrentPosition.getLocation();
-//        lat = location.getLatitude();
-//        return lat;
-//    }
 
     public static JSONObject getObject (String string, JSONObject jsonObject) throws JSONException {
         JSONObject object = jsonObject.getJSONObject(string);
@@ -67,8 +58,8 @@ public class Utils {
 
         return convertPressure;
     }
-    public static boolean isBlankField(EditText etPersonData) {
-        return etPersonData.getText().toString().trim().equals("");
-    }
+//    public static boolean isBlankField(EditText etPersonData) {
+//        return etPersonData.getText().toString().trim().equals("");
+//    }
 
 }

@@ -1,8 +1,9 @@
 package com.softgroup.fishingplus.models;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -11,22 +12,26 @@ import java.util.UUID;
 
 public class Point implements Serializable {
 
-    Point point;
     private UUID uuid;
     private String name;
-    private Date date;
     private String description;
+    private String condition;
+    private Date date;
+
+
     private double lat;
     private double lon;
     private double temperature;
+
     private float pressure;
     private float humidity;
     private float wind;
-    private String condition;
-    List<Point>pointList;
 
     public Point() {
+        uuid =UUID.randomUUID();
+        DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy, HH:mm");
         date = new Date();
+        dateFormat.format(date);
     }
 
 

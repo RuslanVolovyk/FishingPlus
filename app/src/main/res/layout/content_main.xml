@@ -7,7 +7,7 @@
     android:padding="16dp"
     android:background="@color/color_background_chat"
     tools:showIn="@layout/app_bar"
-    tools:context="com.softgroup.fishingplus.MainActivity">
+    >
 
 
 

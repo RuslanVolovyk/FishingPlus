@@ -26,6 +26,9 @@ public class PointSingle {
     public void addPoint(Point point){
         pointList.add(point);
     }
+    public void deletePoint(Point point){
+        pointList.remove(point);
+    }
 
     private PointSingle(Context context) {
         pointList = new ArrayList<>();
