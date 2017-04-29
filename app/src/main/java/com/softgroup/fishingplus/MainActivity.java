@@ -52,18 +52,16 @@ import static com.softgroup.fishingplus.R.id.button_send;
 import static com.softgroup.fishingplus.screens.SplashActivity.WEATHER;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
     private static final String TAG = MainActivity.class.getName();
     public static final int DEFAULT_MSG_LENGTH_LIMIT = 1000;
     private static final int RC_PHOTO_PICKER = 201;
     public static final int RC_SIGN_IN = 101;
     private static final int REQUEST_IMAGE_CAPTURE = 102;
-    private Button mSendButton;
-    private EditText mMessageEditText;
-    private ProgressBar mProgressBar;
-    private ListView mMessageListView;
-
-    List<AuthUI.IdpConfig> providers;
+    private Button buttonSendMessage;
+    private EditText editTextInputMessage;
+    private ProgressBar progressBar;
+    private ListView messageListView;
+    private List<AuthUI.IdpConfig> providers;
     private ChildEventListener childEventListener;
     private DatabaseReference messagesDatabaseReference;
     private FirebaseDatabase firebaseDatabase;
@@ -106,17 +104,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         messagesDatabaseReference = firebaseDatabase.getReference().child("messages");
         chatPhotosStorageReference = firebaseStorage.getReference().child("chat_photos");
 
-        mMessageListView = (ListView) findViewById(R.id.message_list_view);
+        messageListView = (ListView) findViewById(R.id.message_list_view);
         List<FriendlyMessage> friendlyMessages = new ArrayList<>();
         messageAdapter = new MessageAdapter(this, R.layout.layout_message_item, friendlyMessages);
-        mMessageListView.setAdapter(messageAdapter);
-        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
-        mProgressBar.setVisibility(ProgressBar.INVISIBLE);
+        messageListView.setAdapter(messageAdapter);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(ProgressBar.INVISIBLE);
 
-        mMessageEditText = (EditText) findViewById(R.id.edit_text_input_text);
-        mMessageEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(sharedPreferences
+        editTextInputMessage = (EditText) findViewById(R.id.edit_text_input_text);
+        editTextInputMessage.setFilters(new InputFilter[]{new InputFilter.LengthFilter(sharedPreferences
                 .getInt(Utils.FRIENDLY_MSG_LENGTH, DEFAULT_MSG_LENGTH_LIMIT))});
-        mMessageEditText.addTextChangedListener(new TextWatcher() {
+        editTextInputMessage.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
@@ -124,9 +122,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence.toString().trim().length() > 0) {
-                    mSendButton.setEnabled(true);
+                    buttonSendMessage.setEnabled(true);
                 } else {
-                    mSendButton.setEnabled(false);
+                    buttonSendMessage.setEnabled(false);
                 }
             }
 
@@ -135,15 +133,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        mSendButton = (Button) findViewById(R.id.button_send);
-        mSendButton = (Button) findViewById(button_send);
-        mSendButton.setOnClickListener(new View.OnClickListener() {
+        buttonSendMessage = (Button) findViewById(R.id.button_send);
+        buttonSendMessage = (Button) findViewById(button_send);
+        buttonSendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FriendlyMessage friendlyMessage = new FriendlyMessage(mMessageEditText.getText()
+                FriendlyMessage friendlyMessage = new FriendlyMessage(editTextInputMessage.getText()
                         .toString(), username, null);
                 messagesDatabaseReference.push().setValue(friendlyMessage);
-                mMessageEditText.setText("");
+                editTextInputMessage.setText("");
             }
         });
 
@@ -166,8 +164,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         };
         providers = new ArrayList<>();
-
-
     }
 
     @Override
@@ -264,7 +260,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             childEventListener = null;
         }
     }
-
     @Override
     public void onStart() {
         super.onStart();

@@ -42,10 +42,7 @@ public class PointsListActivity extends AppCompatActivity {
         }
     }
 
-
     protected Fragment createFragment() {
-
-
 
         return new PointListFragment();
     }

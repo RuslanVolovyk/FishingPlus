@@ -33,8 +33,8 @@ public class SplashActivity extends AppCompatActivity  {
 
     //private static final int SPLASH_LENGTH = 20;
 
-    Location location;
-    Weather weather;
+   private Location location;
+    private Weather weather;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

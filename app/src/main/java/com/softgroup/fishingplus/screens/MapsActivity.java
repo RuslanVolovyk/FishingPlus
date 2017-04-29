@@ -92,14 +92,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-        Polyline line = mMap.addPolyline(new PolylineOptions()
-                .add(new LatLng(currentLatitudePositionMarker, currentLongitudePositionMarker),
-                        new LatLng(-31.95285, 115.85734))
-                .width(5)
-                .color(Color.RED)
-                .geodesic(true));
-
-        if (latPointMarker != 0.0 & lonPointMarker != 0.0) {
+        if (latPointMarker == 0.0 & lonPointMarker == 0.0) {
 
             LatLng latLng = new LatLng(currentLatitudePositionMarker, currentLongitudePositionMarker);
             MarkerOptions markerOptions = new MarkerOptions();
@@ -115,10 +108,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //                    .position(new LatLng(currentLatitudePositionMarker, currentLongitudePositionMarker))
 //                    .title(MainActivity.getUsername()));
 //
+
+
+        } else {
+            LatLng latLng = new LatLng(currentLatitudePositionMarker, currentLongitudePositionMarker);
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.position(latLng);
+            markerOptions.title(MainActivity.getUsername());
+            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+            currentPositionMarker = mMap.addMarker(markerOptions);
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+
             pointPositionMarker = mMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(-31.95285, 115.85734))
+                    .position(new LatLng(-31.95285, 115.85734)) // Поставить координаты
                     .title("Цель"));
 
+            Polyline line = mMap.addPolyline(new PolylineOptions()
+                    .add(new LatLng(currentLatitudePositionMarker, currentLongitudePositionMarker),
+                            new LatLng(-31.95285, 115.85734))
+                    .width(5)
+                    .color(Color.RED)
+                    .geodesic(true));
 
         }
 

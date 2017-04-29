@@ -19,7 +19,6 @@ public class PointActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment);
 
-
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         Fragment fragment = fragmentManager.findFragmentById(R.id.fragment_container);
@@ -27,7 +26,6 @@ public class PointActivity extends AppCompatActivity {
         if (fragment == null) {
             fragment =createFragment();
             fragmentManager.beginTransaction().add(R.id.fragment_container, fragment).commit();
-
         }
     }
 

@@ -19,7 +19,6 @@ import com.softgroup.fishingplus.R;
 import com.softgroup.fishingplus.Utils;
 import com.softgroup.fishingplus.models.Point;
 import com.softgroup.fishingplus.models.PointSingle;
-import com.softgroup.fishingplus.models.Weather;
 
 import java.util.UUID;
 
@@ -34,9 +33,6 @@ public class PointFragment extends Fragment {
     private TextView datePoint;
     private TextView lon;
     private TextView lat;
-
-    Weather weather;
-
 
     private TextView temperature;
     private TextView pressure;
@@ -60,6 +56,7 @@ public class PointFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
 
 
         if (savedInstanceState != null) {
@@ -167,8 +164,6 @@ public class PointFragment extends Fragment {
 
             temperature = (TextView) view.findViewById(R.id.point_temperatura);
             temperature.setText(String.format("Температура: %.1f °C", point.getTemperature()));
-            //setText(String.valueOf("Температура: " + point.getTemperature() + " °C"));
-            //.setText(String.format("%.1f °C", weather.getTemp()));
 
             condition = (TextView) view.findViewById(R.id.point_condition);
             condition.setText("Облачность: " + point.getCondition());

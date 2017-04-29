@@ -25,8 +25,7 @@ public class WeatherActivity extends AppCompatActivity {
     private TextView sunRise;
     private TextView sunSet;
     private TextView lastUpdate;
-
-    Weather weather;
+    private Weather weather;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

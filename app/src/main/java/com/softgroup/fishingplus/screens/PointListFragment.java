@@ -77,8 +77,6 @@ public class PointListFragment extends Fragment {
     }
 
 
-
-
 //    public void updateUI() {
 //        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
 //
