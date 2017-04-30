@@ -11,22 +11,18 @@
     android:paddingTop="@dimen/activity_vertical_margin">
 
 
-    <TextView
-        android:id="@+id/text_view_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textStyle="bold"
-        tools:text="Referee" />
-
-
     <RelativeLayout
         android:id="@+id/rel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/message_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
-        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/text_view_name_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold"
+            tools:text="Referee" />
 
         <!--<ImageView-->
         <!--android:id="@+id/imageView"-->
@@ -37,30 +33,34 @@
         <!--android:src="@drawable/triangle" />-->
 
         <TextView
-            android:id="@+id/text_view_name_user"
-            android:layout_width="match_parent"
+            android:id="@+id/text_view_message"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
+            android:background="@drawable/message_area"
             android:padding="16dp"
+            android:layout_marginTop="24dp"
+
             android:textColor="#000"
-            tools:text="Риба не тільки успішно пережила п'ять століть, але й прижилася в електронному верстуванні, залишаючись по суті незмінною. Вона популяризувалась в 60-их роках минулого сторіччя завдяки виданню зразків шрифтів Letraset, які містили уривки з Lorem Ipsum, і вдруге - нещодавно завдяки програмам комп'ютерного верстування на кшталт Aldus Pagemaker, які використовували різні версії Lorem Ipsum." />
+            tools:text="Риба не іть, але й прижилася в електронному верстуванні, залишаючись по суті незмінною. Вона популяризувалась в 60-их роках минулого сторіччя завдяки виданню зразків шрифтів Letraset, які містили уривки з Lorem Ipsum, і вдруге - нещодавно завдяки програмам комп'ютерного верстування на кшталт Aldus Pagemaker, які використовували різні версії Lorem Ipsum." />
 
         <ImageView
             android:id="@+id/image_view_user"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"
+            android:layout_width="300dp"
+            android:layout_height="180dp"
+            android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+             />
+
+        <TextView
+            android:id="@+id/message_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_view_message"
+            android:textSize="12sp"
+            android:textStyle="bold|italic"
+            tools:text="@string/time" />
     </RelativeLayout>
 
-
-    <TextView
-        android:id="@+id/message_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:textStyle="bold|italic"
-        tools:text="@string/time" />
 
 </LinearLayout>

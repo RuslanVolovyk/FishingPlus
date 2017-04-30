@@ -138,8 +138,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         buttonSendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FriendlyMessage friendlyMessage = new FriendlyMessage(editTextInputMessage.getText()
-                        .toString(), username, null);
+                FriendlyMessage friendlyMessage = new FriendlyMessage(username, editTextInputMessage.getText()
+                        .toString(),  null);
                 messagesDatabaseReference.push().setValue(friendlyMessage);
                 editTextInputMessage.setText("");
             }

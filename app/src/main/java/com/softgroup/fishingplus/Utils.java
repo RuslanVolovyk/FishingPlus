@@ -61,5 +61,9 @@ public class Utils {
 //    public static boolean isBlankField(EditText etPersonData) {
 //        return etPersonData.getText().toString().trim().equals("");
 //    }
+    public static double convertToKm(double distanceInM){
+        double distance = distanceInM /1000;
+        return distance;
+    }
 
 }

@@ -18,6 +18,7 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.softgroup.fishingplus.MainActivity;
 import com.softgroup.fishingplus.R;
+import com.softgroup.fishingplus.Utils;
 import com.softgroup.fishingplus.data.GPSCurrentPosition;
 
 import static com.softgroup.fishingplus.R.id.map;
@@ -120,13 +121,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
             mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
 
+            double distance = getDistanceBeetwenTwoPoints(currentLatitudePositionMarker, currentLongitudePositionMarker, -31.95285, 115.85734);
+            distance = Utils.convertToKm(distance);
+
             pointPositionMarker = mMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(-31.95285, 115.85734)) // Поставить координаты
+                    .snippet(String.valueOf("К точке " + distance) + " км")
+                    .position(new LatLng(-31.95285, 115.85734))// Поставить координаты latPointMarker, lonPointMarker
                     .title("Цель"));
+
 
             Polyline line = mMap.addPolyline(new PolylineOptions()
                     .add(new LatLng(currentLatitudePositionMarker, currentLongitudePositionMarker),
-                            new LatLng(-31.95285, 115.85734))
+                            new LatLng(-31.95285, 115.85734)) // Поставить координаты latPointMarker, lonPointMarker
                     .width(5)
                     .color(Color.RED)
                     .geodesic(true));
@@ -263,4 +269,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        }
 //    }
 
+    public double getDistanceBeetwenTwoPoints(double latCurrent, double lonCurrent, double latPointer, double lonPointer) {
+
+        Location currentPoint = new Location("Текущее положение");
+        currentPoint.setLatitude(latCurrent);
+        currentPoint.setLongitude(lonCurrent);
+
+        Location changePoint = new Location("Сохранення точка");
+        changePoint.setLatitude(latPointer);
+        changePoint.setLongitude(lonPointer);
+
+        double distance = currentPoint.distanceTo(changePoint);
+        return distance;
+    }
 }
