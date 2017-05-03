@@ -16,7 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
+import android.support.design.widget.FloatingActionButton;
 import com.softgroup.fishingplus.R;
 import com.softgroup.fishingplus.data.GPSCurrentPosition;
 import com.softgroup.fishingplus.models.Point;
@@ -40,6 +40,7 @@ public class PointListFragment extends Fragment {
     private PointAdapter pointAdapter;
     private Weather weather;
     private Location location;
+    private FloatingActionButton buttonAddPoint;
 //    private FirebaseDatabase database;
 //    private DatabaseReference ref;
 
@@ -47,6 +48,7 @@ public class PointListFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
 
 //        if (savedInstanceState != null) {
 //
@@ -69,6 +71,15 @@ public class PointListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.point_list, container, false);
+
+        buttonAddPoint = (FloatingActionButton) view.findViewById(R.id.fab);
+        buttonAddPoint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createPoint();
+            }
+        });
+
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_points);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -137,34 +148,39 @@ public class PointListFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.menu_create_new_points:
 
-                GPSCurrentPosition gpsCurrentPosition = new GPSCurrentPosition(getActivity());
-                location = gpsCurrentPosition.getLocation();
-
-                double lat = location.getLatitude();
-                double lon = location.getLongitude();
-                Log.v(TAG, "Нажатие " + "Ветер " + lat);
-                Log.v(TAG, "Нажатие " + "Ветер " + lon);
-
-
-                Point point = new Point();
-                point.setTemperature(weather.getTemp());
-                point.setCondition(weather.getCondition() + weather.getDescription());
-                point.setHumidity(weather.getHuminity());
-                point.setWind(weather.getSpeed());
-                point.setPressure(weather.getPressure());
-                point.setLon(lon);
-                point.setLat(lat);
-
-
-                PointSingle.get(getActivity()).addPoint(point);
-                Intent intent = PointActivity.newIntent(getActivity(), point.getUuid());
-                startActivity(intent);
+                createPoint();
                 return true;
 
             default:
 
         }
         return true;
+    }
+
+    private void createPoint() {
+        GPSCurrentPosition gpsCurrentPosition = new GPSCurrentPosition(getActivity());
+        location = gpsCurrentPosition.getLocation();
+
+        double lat = location.getLatitude();
+        double lon = location.getLongitude();
+        Log.v(TAG, "Нажатие " + "Ветер " + lat);
+        Log.v(TAG, "Нажатие " + "Ветер " + lon);
+
+
+        Point point = new Point();
+        point.setTemperature(weather.getTemp());
+        point.setCondition(weather.getCondition() + weather.getDescription());
+        point.setHumidity(weather.getHuminity());
+        point.setWind(weather.getSpeed());
+        point.setPressure(weather.getPressure());
+        point.setLon(lon);
+        point.setLat(lat);
+
+
+        PointSingle.get(getActivity()).addPoint(point);
+
+        Intent intent = PointActivity.newIntent(getActivity(), point.getUuid());
+        startActivity(intent);
     }
 
 
