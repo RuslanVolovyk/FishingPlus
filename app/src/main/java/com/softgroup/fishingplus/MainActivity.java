@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -73,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static String username;
     private SharedPreferences sharedPreferences;
     private Weather weather;
+//    ArrayList<Photo> photoList;
+//    Photo photo = new Photo();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,13 +84,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         weather = getIntent().getExtras().getParcelable(WEATHER);
 
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, null, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -108,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         List<FriendlyMessage> friendlyMessages = new ArrayList<>();
         messageAdapter = new MessageAdapter(this, R.layout.layout_message_item, friendlyMessages);
         messageListView.setAdapter(messageAdapter);
+
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(ProgressBar.INVISIBLE);
 
@@ -139,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 FriendlyMessage friendlyMessage = new FriendlyMessage(username, editTextInputMessage.getText()
-                        .toString(),  null);
+                        .toString(), null);
                 messagesDatabaseReference.push().setValue(friendlyMessage);
                 editTextInputMessage.setText("");
             }
@@ -184,9 +188,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             photoRef.putFile(selectedImageUri)
                     .addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                          //  photoList = new ArrayList<>();
                             Uri downloadUrl = taskSnapshot.getDownloadUrl();
                             FriendlyMessage friendlyMessage = new FriendlyMessage(username, null, downloadUrl.toString());
                             messagesDatabaseReference.push().setValue(friendlyMessage);
+//                            photo.setImage(downloadUrl.toString());
+//                            try {
+//                                photoList.add(photo);
+//                            } catch (Exception e) {
+//                                e.printStackTrace();
+//                            }
+
                         }
                     });
         } else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
@@ -198,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             photoFromCamera.compress(Bitmap.CompressFormat.JPEG, 100, baos);
             byte[] bytesData = baos.toByteArray();
 
-            UploadTask uploadTask = chatPhotosStorageReference.putBytes(bytesData);
+            UploadTask uploadTask = chatPhotosStorageReference.child("chat_photos").putBytes(bytesData);
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception exception) {
@@ -260,6 +272,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             childEventListener = null;
         }
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -274,6 +287,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         detachDatabaseListener();
         messageAdapter.clear();
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -332,12 +346,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.sign_out_menu) {
             AuthUI.getInstance().signOut(this);
+
         }
+        //else if (id == R.id.photo_galery) {
+//            Intent photoGaleryIntent = new Intent(this, PhotoActivity.class);
+//            photoGaleryIntent.putParcelableArrayListExtra("kk", photoList);
+//            startActivity(photoGaleryIntent);
+//
+//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

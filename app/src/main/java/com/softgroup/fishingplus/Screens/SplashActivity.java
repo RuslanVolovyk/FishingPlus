@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.softgroup.fishingplus.MainActivity;
+import com.softgroup.fishingplus.Utils;
 import com.softgroup.fishingplus.data.GPSCurrentPosition;
 import com.softgroup.fishingplus.data.JsonWeatherParser;
 import com.softgroup.fishingplus.data.WeatherHttpClient;
@@ -19,17 +20,17 @@ public class SplashActivity extends AppCompatActivity  {
 
     public static final String WEATHER = "weather";
 
-//    private double temperature;
-//    private String icon;
-//    private int pressure;
-//
-//    private String sunRise;
-//    private String sunSet;
-//    private String lastUpdate;
-//    private String cityName;
-//    private String description;
-//    private float wind;
-//    private float humidity;
+    private double temperature;
+    private String icon;
+    private int pressure;
+
+    private String sunRise;
+    private String sunSet;
+    private String lastUpdate;
+    private String cityName;
+    private String description;
+    private float wind;
+    private float humidity;
 
     //private static final int SPLASH_LENGTH = 20;
 
@@ -97,23 +98,23 @@ public class SplashActivity extends AppCompatActivity  {
         protected void onPostExecute(Weather weather) {
             super.onPostExecute(weather);
 
-//            cityName = weather.getCity() + ", " + weather.getCountry();
-//            temperature = weather.getTemp();
-//            humidity = weather.getHuminity();
-//            pressure = Utils.convertHpaToMMHg(weather.getPressure());
-//            wind = weather.getSpeed();
-//            sunRise = Utils.formatTimeFromSunSetandSunRise(weather.getSunrise());
-//            sunSet = Utils.formatTimeFromSunSetandSunRise(weather.getSunset());
-//            lastUpdate = Utils.getCurrentDate();
-//            description = weather.getCondition() + " (" + weather.getDescription() + ")";
-//            icon = Utils.getImage(weather.getIcon());
-//            Log.v(TAG, "Weather " + weather.getTemp());
-//            Log.v(TAG, "Weather " + weather.getHuminity());
-//            Log.v(TAG, "Weather " + Utils.convertHpaToMMHg(weather.getPressure()));
-//            Log.v(TAG, "Weather " + Utils.formatTimeFromSunSetandSunRise(weather.getSunrise()));
-//            Log.v(TAG, "Weather " + Utils.formatTimeFromSunSetandSunRise(weather.getSunset()));
-//
-//            Log.v(TAG, "Weather1 " + weather);
+            cityName = weather.getCity() + ", " + weather.getCountry();
+            temperature = weather.getTemp();
+            humidity = weather.getHuminity();
+            pressure = Utils.convertHpaToMMHg(weather.getPressure());
+            wind = weather.getSpeed();
+            sunRise = Utils.formatTimeFromSunSetandSunRise(weather.getSunrise());
+            sunSet = Utils.formatTimeFromSunSetandSunRise(weather.getSunset());
+            lastUpdate = Utils.getCurrentDate();
+            description = weather.getCondition() + " (" + weather.getDescription() + ")";
+            icon = Utils.getImage(weather.getIcon());
+            Log.v(TAG, "Weather " + weather.getTemp());
+            Log.v(TAG, "Weather " + weather.getHuminity());
+            Log.v(TAG, "Weather " + Utils.convertHpaToMMHg(weather.getPressure()));
+            Log.v(TAG, "Weather " + Utils.formatTimeFromSunSetandSunRise(weather.getSunrise()));
+            Log.v(TAG, "Weather " + Utils.formatTimeFromSunSetandSunRise(weather.getSunset()));
+
+            Log.v(TAG, "Weather1 " + weather);
 
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
             intent.putExtra(WEATHER, weather);

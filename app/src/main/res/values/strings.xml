@@ -33,6 +33,7 @@
     <string name="lon">Долгота</string>
     <string name="lat">Широта</string>
     <string name="delete_point">Удалить</string>
+    <string name="photo_galery">Фото галерея</string>
 
 
 </resources>

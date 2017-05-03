@@ -22,6 +22,10 @@
             android:id="@+id/drawer_weather"
             android:icon="@mipmap/sunny"
             android:title="@string/weather" />
+        <!--<item-->
+            <!--android:id="@+id/photo_galery"-->
+            <!--android:icon="@mipmap/sunny"-->
+            <!--android:title="@string/photo_galery" />-->
     </group>
 
     <item android:title="@string/auth">
