@@ -1,9 +1,11 @@
 package com.softgroup.fishingplus.screens;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,12 +18,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.support.design.widget.FloatingActionButton;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.softgroup.fishingplus.R;
 import com.softgroup.fishingplus.data.GPSCurrentPosition;
 import com.softgroup.fishingplus.models.Point;
 import com.softgroup.fishingplus.models.PointSingle;
 import com.softgroup.fishingplus.models.Weather;
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.List;
 
@@ -41,8 +46,8 @@ public class PointListFragment extends Fragment {
     private Weather weather;
     private Location location;
     private FloatingActionButton buttonAddPoint;
-//    private FirebaseDatabase database;
-//    private DatabaseReference ref;
+    private FirebaseDatabase database;
+    private DatabaseReference ref;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,6 +77,7 @@ public class PointListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.point_list, container, false);
 
+
         buttonAddPoint = (FloatingActionButton) view.findViewById(R.id.fab);
         buttonAddPoint.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +88,12 @@ public class PointListFragment extends Fragment {
 
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_points);
+        recyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getActivity())
+                .color(Color.BLACK)
+                .sizeResId(R.dimen.divider)
+                .marginResId(R.dimen.leftmargin, R.dimen.rightmargin)
+                .build());
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         updateUI();
         return view;
@@ -101,13 +113,16 @@ public class PointListFragment extends Fragment {
 //                    Point point = noteDataSnapshot.getValue(Point.class);
 //                    pointlist.add(point);
 //                }
-//
-//                pointAdapter.updateList(pointlist);
-//
+//                if (pointAdapter == null) {
+//                    pointAdapter = new PointAdapter(pointlist);
+//                    recyclerView.setAdapter(pointAdapter);
+//                } else {
+//                    pointAdapter.notifyDataSetChanged();
+//                }
 //
 //            }
-//
-//
+
+    //
 //            @Override
 //            public void onCancelled(DatabaseError databaseError) {
 //
@@ -116,8 +131,6 @@ public class PointListFragment extends Fragment {
 //        });
 //    }
     public void updateUI() {
-
-
 
 
         PointSingle pointSingle = PointSingle.get(getActivity());

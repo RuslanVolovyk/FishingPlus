@@ -27,8 +27,23 @@ public class Point implements Serializable {
     private float humidity;
     private float wind;
 
+    public Point(String name, String description, double temperature,
+                 String condition, float pressure, float humidity, float wind, double lat, double lon, Date date) {
+        this.name = name;
+        this.description = description;
+        this.condition = condition;
+        this.date = date;
+        this.lat = lat;
+        this.lon = lon;
+        this.temperature = temperature;
+        this.pressure = pressure;
+        this.humidity = humidity;
+        this.wind = wind;
+    }
+
+
     public Point() {
-        uuid =UUID.randomUUID();
+        uuid = UUID.randomUUID();
         DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy, HH:mm");
         date = new Date();
         dateFormat.format(date);

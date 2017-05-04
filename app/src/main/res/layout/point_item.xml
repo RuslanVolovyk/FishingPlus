@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
 
         <ImageButton
-            android:src="@drawable/ic_add_location_red_900_24dp"
+            android:id="@+id/image_button_show_location_on_the_map"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:id="@+id/image_button_show_location_on_the_map"     />
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/button_point"
+            android:src="@drawable/ic_add_location_red_900_24dp" />
 
         <TextView
-            android:layout_toLeftOf="@id/image_button_show_location_on_the_map"
-            android:textSize="16sp"
-            tools:text="@string/name_point"
             android:id="@+id/text_view_name_point"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceListItem" />
+            android:layout_toLeftOf="@id/image_button_show_location_on_the_map"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textSize="16sp"
+            tools:text="@string/name_point" />
 
         <TextView
-            android:layout_below="@+id/text_view_name_point"
-            android:layout_toLeftOf="@id/image_button_show_location_on_the_map"
-            android:textSize="16sp"
-            tools:text="@string/date_point"
             android:id="@+id/text_view_date_point"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceListItem" />
-
+            android:layout_below="@+id/text_view_name_point"
+            android:layout_toLeftOf="@id/image_button_show_location_on_the_map"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textSize="10sp"
+            android:textStyle="bold|italic"
+            tools:text="@string/date_point" />
 
 
     </RelativeLayout>
-
-
 
 
 </LinearLayout>
