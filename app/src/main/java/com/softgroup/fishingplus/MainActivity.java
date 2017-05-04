@@ -81,6 +81,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(ProgressBar.VISIBLE);
+
 
         weather = getIntent().getExtras().getParcelable(WEATHER);
 
@@ -107,12 +110,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         messagesDatabaseReference = firebaseDatabase.getReference().child("messages");
         chatPhotosStorageReference = firebaseStorage.getReference().child("chat_photos");
 
+
+
         messageListView = (ListView) findViewById(R.id.message_list_view);
         List<FriendlyMessage> friendlyMessages = new ArrayList<>();
         messageAdapter = new MessageAdapter(this, R.layout.layout_message_item, friendlyMessages);
         messageListView.setAdapter(messageAdapter);
 
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
         progressBar.setVisibility(ProgressBar.INVISIBLE);
 
         editTextInputMessage = (EditText) findViewById(R.id.edit_text_input_text);
@@ -175,10 +180,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
-                Toast.makeText(this, "Signed in!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Добро пожаловать!", Toast.LENGTH_SHORT).show();
 
             } else if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(this, "Sign in canceled", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Не удалось войти в систему", Toast.LENGTH_SHORT).show();
                 finish();
             }
         } else if (requestCode == RC_PHOTO_PICKER && resultCode == RESULT_OK) {

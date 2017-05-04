@@ -6,8 +6,8 @@
     <string name="send_a_message">Отправить</string>
     <string name="title_activity_maps">Карта</string>
     <string name="weather_activity_name">Текущая погода</string>
-    <string name="add_foto_from_camera">Добавить фото с камеры</string>
-    <string name="add_foto_from_galery">Добавить фото с галереи</string>
+    <string name="add_foto_from_camera">Фото с камеры</string>
+    <string name="add_foto_from_galery">Фото с галереи</string>
     <string name="show_on_the_map">Показать на карте</string>
     <string name="name_point">Название точки</string>
     <string name="date_point">Дата точки</string>
@@ -34,6 +34,8 @@
     <string name="lat">Широта</string>
     <string name="delete_point">Удалить</string>
     <string name="photo_galery">Фото галерея</string>
+    <string name="send">Отп</string>
+    <string name="text_nav_header">«Боги не засчитывают в счет жизни время, проведенное на рыбалке»</string>
 
 
 </resources>

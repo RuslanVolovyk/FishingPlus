@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -244,6 +245,8 @@ public class PointListFragment extends Fragment {
                 showOnTheMap.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+
+                        Toast.makeText(getActivity(), "jjjj", Toast.LENGTH_SHORT).show();
                         double lat = point.getLat();
                         double lon = point.getLon();
                         Intent intent = new Intent(getActivity(), MapsActivity.class);

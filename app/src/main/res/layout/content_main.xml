@@ -41,12 +41,14 @@
             android:layout_weight="1" />
 
         <Button
+            android:background="@drawable/button_point"
+            android:textColor="@android:color/white"
             android:id="@+id/button_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:enabled="false"
-            android:text="SEND" />
+            android:text="@string/send" />
 
     </LinearLayout>
 
