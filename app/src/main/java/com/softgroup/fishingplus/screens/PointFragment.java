@@ -34,7 +34,7 @@ public class PointFragment extends Fragment {
     private TextView pressure;
     private TextView humidity;
     private TextView wind;
-    private TextView condition;
+   // private TextView condition;
 
 
     public static final String ARGUMENTS = "id";
@@ -137,8 +137,8 @@ public class PointFragment extends Fragment {
             lon.setText(String.valueOf("Долгота: " + point.getLon()));
             temperature = (TextView) view.findViewById(R.id.point_temperatura);
             temperature.setText(String.format("Температура: %.1f °C", point.getTemperature()));
-            condition = (TextView) view.findViewById(R.id.point_condition);
-            condition.setText("Облачность: " + point.getCondition());
+//            condition = (TextView) view.findViewById(R.id.point_condition);
+//            condition.setText("Облачность: " + point.getCondition());
             humidity = (TextView) view.findViewById(R.id.point_humidity);
             humidity.setText("Влажность воздуха: " + point.getHumidity() + " %");
             pressure = (TextView) view.findViewById(R.id.point_pressure);

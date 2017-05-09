@@ -76,12 +76,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/weather_humidity" />
-        <TextView
-            android:textColor="#000"
-            android:id="@+id/point_condition"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/weather_cloudy" />
+        <!--<TextView-->
+            <!--android:textColor="#000"-->
+            <!--android:id="@+id/point_condition"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/weather_cloudy" />-->
         <TextView
             android:textColor="#000"
             android:id="@+id/point_wind_speed"

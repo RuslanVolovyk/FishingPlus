@@ -22,7 +22,7 @@ public class WeatherHttpClient {
         InputStream inputStream;
 
         try {
-            connection = (HttpURLConnection) (new URL(Utils.BASE_URL+coord+Utils.OPEN_WEATHER_MAP_API_KEY))
+            connection = (HttpURLConnection) (new URL(Utils.BASE_URL + coord + Utils.OPEN_WEATHER_MAP_API_KEY))
                     .openConnection();
             connection.setRequestMethod("GET");
             connection.setDoInput(true);

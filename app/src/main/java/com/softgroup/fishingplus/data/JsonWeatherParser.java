@@ -45,8 +45,8 @@ public class JsonWeatherParser {
 
             JSONObject weatherObj = weatherArray.getJSONObject(0);
             weather.setWeatherId(Utils.getInt("id", weatherObj));
-            weather.setDescription(Utils.getString("description", weatherObj));
-            weather.setCondition(Utils.getString("main", weatherObj));
+//            weather.setDescription(Utils.getString("description", weatherObj));
+//            weather.setCondition(Utils.getString("main", weatherObj));
             weather.setIcon(Utils.getString("icon", weatherObj));
 
             //get main () data

@@ -18,7 +18,7 @@ public class WeatherActivity extends AppCompatActivity {
     private TextView cityName;
     private TextView temperature;
     private ImageView icon;
-    private TextView description;
+   // private TextView description;
     private TextView humidity;
     private TextView pressure;
     private TextView wind;
@@ -40,8 +40,8 @@ public class WeatherActivity extends AppCompatActivity {
         Glide.with(WeatherActivity.this)
                 .load(Utils.getImage(weather.getIcon()))
                 .into(icon);
-        description = (TextView) findViewById(R.id.text_view_clouds);
-        description.setText("Облачность: " + weather.getCondition() + " (" + weather.getDescription() + ")");
+//        description = (TextView) findViewById(R.id.text_view_clouds);
+//        description.setText("Облачность: " + weather.getCondition() + " (" + weather.getDescription() + ")");
         humidity = (TextView) findViewById(R.id.text_view_humidity);
         humidity.setText("Влажность воздуха: " + weather.getHuminity() + " %");
         pressure = (TextView) findViewById(R.id.text_view_pressure);

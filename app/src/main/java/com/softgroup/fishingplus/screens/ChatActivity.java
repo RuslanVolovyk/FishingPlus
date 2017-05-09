@@ -82,43 +82,28 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(ProgressBar.VISIBLE);
-
-
         weather = getIntent().getExtras().getParcelable(WEATHER);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
-
         messagesDatabaseReference = firebaseDatabase.getReference().child("messages");
         chatPhotosStorageReference = firebaseStorage.getReference().child("chat_photos");
-
-
-
         messageListView = (ListView) findViewById(R.id.message_list_view);
+
         List<FriendlyMessage> friendlyMessages = new ArrayList<>();
         messageAdapter = new MessageAdapter(this, R.layout.layout_message_item, friendlyMessages);
         messageListView.setAdapter(messageAdapter);
-
-
         progressBar.setVisibility(ProgressBar.INVISIBLE);
-
         editTextInputMessage = (EditText) findViewById(R.id.edit_text_input_text);
         editTextInputMessage.setFilters(new InputFilter[]{new InputFilter.LengthFilter(sharedPreferences
                 .getInt(Utils.FRIENDLY_MSG_LENGTH, DEFAULT_MSG_LENGTH_LIMIT))});
@@ -192,7 +177,7 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
             photoRef.putFile(selectedImageUri)
                     .addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                          //  photoList = new ArrayList<>();
+                            //  photoList = new ArrayList<>();
                             Uri downloadUrl = taskSnapshot.getDownloadUrl();
                             FriendlyMessage friendlyMessage = new FriendlyMessage(username, null, downloadUrl.toString());
                             messagesDatabaseReference.push().setValue(friendlyMessage);
@@ -228,7 +213,6 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
                 }
             });
         }
-
     }
 
     private void onSignedInInitialize(String displayName) {
@@ -358,7 +342,6 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
 //            startActivity(photoGaleryIntent);
 //
 //        }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

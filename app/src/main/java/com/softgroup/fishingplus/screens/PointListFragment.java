@@ -81,8 +81,6 @@ public class PointListFragment extends Fragment {
     }
 
     public void updateUI() {
-
-
         PointSingle pointSingle = PointSingle.get(getActivity());
         List<Point> pointList = pointSingle.getPointList();
 
@@ -129,7 +127,7 @@ public class PointListFragment extends Fragment {
 
         Point point = new Point();
         point.setTemperature(weather.getTemp());
-        point.setCondition(weather.getCondition() + weather.getDescription());
+        // point.setCondition(weather.getCondition() + weather.getDescription());
         point.setHumidity(weather.getHuminity());
         point.setWind(weather.getSpeed());
         point.setPressure(weather.getPressure());
@@ -188,13 +186,14 @@ public class PointListFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
 
-                        Toast.makeText(getActivity(), "jjjj", Toast.LENGTH_SHORT).show();
                         double lat = point.getLat();
                         double lon = point.getLon();
                         Intent intent = new Intent(getActivity(), MapsActivity.class);
                         intent.putExtra(LAT, lat);
                         intent.putExtra(LON, lon);
                         startActivity(intent);
+                        Toast.makeText(getActivity(), "Координаты" + "\n" + lat + "\n" + lon, Toast.LENGTH_SHORT).show();
+
                         Log.v(TAG, "Нажатие " + "Координаты лат " + point.getLat());
                         Log.v(TAG, "Нажатие " + "Координаты лон " + point.getLon());
                     }
@@ -211,11 +210,11 @@ public class PointListFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Log.v(TAG, "Нажатие " + "Описние " + point.getDescription());
+                // Log.v(TAG, "Нажатие " + "Описние " + point.getDescription());
                 Log.v(TAG, "Нажатие " + "Дата " + point.getDate());
                 Log.v(TAG, "Нажатие " + "Название " + point.getName());
                 Log.v(TAG, "Нажатие " + "ІД " + point.getUuid());
-                Log.v(TAG, "Нажатие " + "Облачность " + point.getCondition());
+                // Log.v(TAG, "Нажатие " + "Облачность " + point.getCondition());
                 Log.v(TAG, "Нажатие " + "Влажность " + point.getHumidity());
                 Log.v(TAG, "Нажатие " + "Температура " + point.getTemperature());
                 Log.v(TAG, "Нажатие " + "Ветер " + point.getWind());

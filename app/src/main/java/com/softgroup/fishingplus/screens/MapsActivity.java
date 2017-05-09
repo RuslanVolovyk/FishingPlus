@@ -120,18 +120,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
             mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
 
-            double distance = getDistanceBeetwenTwoPoints(currentLatitudePositionMarker, currentLongitudePositionMarker, -31.95285, 115.85734);
+            double distance = getDistanceBeetwenTwoPoints(currentLatitudePositionMarker, currentLongitudePositionMarker, latPointMarker, lonPointMarker);
             distance = Utils.convertToKm(distance);
 
             pointPositionMarker = mMap.addMarker(new MarkerOptions()
                     .snippet(String.valueOf("К точке " + distance) + " км")
-                    .position(new LatLng(-31.95285, 115.85734))// Поставить координаты latPointMarker, lonPointMarker
+                    .position(new LatLng(latPointMarker, lonPointMarker))// Поставить координаты latPointMarker, lonPointMarker
                     .title("Цель"));
 
 
             Polyline line = mMap.addPolyline(new PolylineOptions()
                     .add(new LatLng(currentLatitudePositionMarker, currentLongitudePositionMarker),
-                            new LatLng(-31.95285, 115.85734)) // Поставить координаты latPointMarker, lonPointMarker
+                            new LatLng(latPointMarker, lonPointMarker)) // Поставить координаты latPointMarker, lonPointMarker
                     .width(5)
                     .color(Color.RED)
                     .geodesic(true));

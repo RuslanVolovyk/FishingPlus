@@ -70,13 +70,13 @@
             android:layout_height="wrap_content"
             android:text="@string/weather_humidity" />
 
-        <TextView
-            android:id="@+id/point_condition"
+        <!--<TextView-->
+            <!--android:id="@+id/point_condition"-->
 
-            style="@style/Theme.AppCompat.Light"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/weather_cloudy" />
+            <!--style="@style/Theme.AppCompat.Light"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/weather_cloudy" />-->
 
         <TextView
             android:id="@+id/point_wind_speed"

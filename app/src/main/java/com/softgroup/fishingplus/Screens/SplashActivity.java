@@ -97,7 +97,7 @@ public class SplashActivity extends AppCompatActivity {
             sunRise = Utils.formatTimeFromSunSetandSunRise(weather.getSunrise());
             sunSet = Utils.formatTimeFromSunSetandSunRise(weather.getSunset());
             lastUpdate = Utils.getCurrentDate();
-            description = weather.getCondition() + " (" + weather.getDescription() + ")";
+           // description = weather.getCondition() + " (" + weather.getDescription() + ")";
             icon = Utils.getImage(weather.getIcon());
             Log.v(TAG, "Weather " + weather.getTemp());
             Log.v(TAG, "Weather " + weather.getHuminity());

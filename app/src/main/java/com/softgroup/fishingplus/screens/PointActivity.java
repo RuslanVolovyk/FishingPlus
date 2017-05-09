@@ -17,13 +17,13 @@ public class PointActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fragment);
+        setContentView(R.layout.activity_fragment_detail);
         FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment fragment = fragmentManager.findFragmentById(R.id.fragment_container);
+        Fragment fragment = fragmentManager.findFragmentById(R.id.fragment_container_detail);
 
         if (fragment == null) {
             fragment =createFragment();
-            fragmentManager.beginTransaction().add(R.id.fragment_container, fragment).commit();
+            fragmentManager.beginTransaction().add(R.id.fragment_container_detail, fragment).commit();
         }
     }
 

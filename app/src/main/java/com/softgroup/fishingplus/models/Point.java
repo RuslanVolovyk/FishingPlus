@@ -1,6 +1,5 @@
 package com.softgroup.fishingplus.models;
 
-import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,37 +9,19 @@ import java.util.UUID;
  * Created by Администратор on 16.04.2017.
  */
 
-public class Point implements Serializable {
+public class Point {
 
     private UUID uuid;
     private String name;
     private String description;
-    private String condition;
+//    private String condition;
     private Date date;
-
-
     private double lat;
     private double lon;
     private double temperature;
-
     private float pressure;
     private float humidity;
     private float wind;
-
-    public Point(String name, String description, double temperature,
-                 String condition, float pressure, float humidity, float wind, double lat, double lon, Date date) {
-        this.name = name;
-        this.description = description;
-        this.condition = condition;
-        this.date = date;
-        this.lat = lat;
-        this.lon = lon;
-        this.temperature = temperature;
-        this.pressure = pressure;
-        this.humidity = humidity;
-        this.wind = wind;
-    }
-
 
     public Point() {
         uuid = UUID.randomUUID();
@@ -68,7 +49,6 @@ public class Point implements Serializable {
     }
 
     public double getLon() {
-
 
         return lon;
     }
@@ -109,13 +89,13 @@ public class Point implements Serializable {
         this.wind = wind;
     }
 
-    public String getCondition() {
-        return condition;
-    }
-
-    public void setCondition(String condition) {
-        this.condition = condition;
-    }
+//    public String getCondition() {
+//        return condition;
+//    }
+//
+//    public void setCondition(String condition) {
+//        this.condition = condition;
+//    }
 
     public String getName() {
         return name;

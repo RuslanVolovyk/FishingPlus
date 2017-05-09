@@ -23,8 +23,8 @@ public class Weather implements Parcelable {
 
    // private int lastUpdate;
     private int weatherId;
-    private String condition;
-    private String description;
+//    private String condition;
+//    private String description;
     private String icon;
     private float pressure;
     private float huminity;
@@ -42,8 +42,8 @@ public class Weather implements Parcelable {
         //precipitation = in.readInt();
       //  lastUpdate = in.readInt();
         weatherId = in.readInt();
-        condition = in.readString();
-        description = in.readString();
+//        condition = in.readString();
+//        description = in.readString();
         icon = in.readString();
         pressure = in.readFloat();
         huminity = in.readFloat();
@@ -157,21 +157,21 @@ public class Weather implements Parcelable {
         this.weatherId = weatherId;
     }
 
-    public String getCondition() {
-        return condition;
-    }
-
-    public void setCondition(String condition) {
-        this.condition = condition;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+//    public String getCondition() {
+//        return condition;
+//    }
+//
+//    public void setCondition(String condition) {
+//        this.condition = condition;
+//    }
+//
+//    public String getDescription() {
+//        return description;
+//    }
+//
+//    public void setDescription(String description) {
+//        this.description = description;
+//    }
 
     public String getIcon() {
         return icon;
@@ -222,8 +222,8 @@ public class Weather implements Parcelable {
 //        parcel.writeInt(precipitation);
 //        parcel.writeInt(lastUpdate);
         parcel.writeInt(weatherId);
-        parcel.writeString(condition);
-        parcel.writeString(description);
+//        parcel.writeString(condition);
+//        parcel.writeString(description);
         parcel.writeString(icon);
         parcel.writeFloat(pressure);
         parcel.writeFloat(huminity);

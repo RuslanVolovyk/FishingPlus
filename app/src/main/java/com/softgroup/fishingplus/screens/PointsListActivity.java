@@ -18,23 +18,19 @@ public class PointsListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment);
-
         try {
             weather = getIntent().getExtras().getParcelable(WEATHER);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         Bundle bundle = new Bundle();
         bundle.putParcelable(WEATHER, weather);
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment = fragmentManager.findFragmentById(R.id.fragment_container);
-
         if (fragment == null) {
-            fragment =createFragment();
+            fragment = createFragment();
             fragment.setArguments(bundle);
             fragmentManager.beginTransaction().add(R.id.fragment_container, fragment).commit();
-
         }
     }
 
