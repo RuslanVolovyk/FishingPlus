@@ -16,7 +16,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.softgroup.fishingplus.MainActivity;
 import com.softgroup.fishingplus.R;
 import com.softgroup.fishingplus.Utils;
 import com.softgroup.fishingplus.data.GPSCurrentPosition;
@@ -98,7 +97,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             LatLng latLng = new LatLng(currentLatitudePositionMarker, currentLongitudePositionMarker);
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(latLng);
-            markerOptions.title(MainActivity.getUsername());
+            markerOptions.title(ChatActivity.getUsername());
             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
             currentPositionMarker = mMap.addMarker(markerOptions);
             mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
@@ -107,7 +106,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 //            currentPositionMarker = mMap.addMarker(new MarkerOptions()
 //                    .position(new LatLng(currentLatitudePositionMarker, currentLongitudePositionMarker))
-//                    .title(MainActivity.getUsername()));
+//                    .title(ChatActivity.getUsername()));
 //
 
 
@@ -115,7 +114,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             LatLng latLng = new LatLng(currentLatitudePositionMarker, currentLongitudePositionMarker);
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(latLng);
-            markerOptions.title(MainActivity.getUsername());
+            markerOptions.title(ChatActivity.getUsername());
             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
             currentPositionMarker = mMap.addMarker(markerOptions);
             mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
@@ -208,7 +207,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 //        MarkerOptions markerOptions = new MarkerOptions();
 //        markerOptions.position(latLng);
-//        markerOptions.title(MainActivity.getUsername());
+//        markerOptions.title(ChatActivity.getUsername());
 //
 //        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
 //        mCurrLocationMarker = mMap.addMarker(markerOptions);

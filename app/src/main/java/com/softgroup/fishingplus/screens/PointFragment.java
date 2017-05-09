@@ -22,9 +22,6 @@ import com.softgroup.fishingplus.models.PointSingle;
 
 import java.util.UUID;
 
-/**
- * Created by Администратор on 19.04.2017.
- */
 
 public class PointFragment extends Fragment {
     private Point point;
@@ -33,7 +30,6 @@ public class PointFragment extends Fragment {
     private TextView datePoint;
     private TextView lon;
     private TextView lat;
-
     private TextView temperature;
     private TextView pressure;
     private TextView humidity;
@@ -42,7 +38,6 @@ public class PointFragment extends Fragment {
 
 
     public static final String ARGUMENTS = "id";
-    public static final String POINR_DATA = "id";
 
     public static PointFragment newInstance(UUID uuid) {
         Bundle arg = new Bundle();
@@ -58,20 +53,9 @@ public class PointFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
-
-        if (savedInstanceState != null) {
-
-            point = (Point) savedInstanceState.getSerializable(POINR_DATA);
-
-            Log.v("Referee", "Bundle savedInstanceState" + point.getTemperature());
-//
-//        database = FirebaseDatabase.getInstance();
-//        ref = database.getReference().child("point");
-        }
         UUID uuid = (UUID) getArguments().getSerializable(ARGUMENTS);
         point = PointSingle.get(getActivity()).getPoint(uuid);
         Log.v("Referee", "onCreate" + point.getTemperature());
-
 
     }
 
@@ -97,21 +81,12 @@ public class PointFragment extends Fragment {
 
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable(POINR_DATA, point);
-        Log.v("Referee", "onSaveInstanceState" + point.getTemperature());
-
-        super.onSaveInstanceState(outState);
-    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_point_detail, container, false);
-
         Log.v("Referee", "onCreateView" + point.getTemperature());
-
 
         try {
             editTextName = (EditText) view.findViewById(R.id.point_title_label_hint);
@@ -160,20 +135,14 @@ public class PointFragment extends Fragment {
             lat.setText(String.valueOf("Широта: " + point.getLat()));
             lon = (TextView) view.findViewById(R.id.point_longituda);
             lon.setText(String.valueOf("Долгота: " + point.getLon()));
-
-
             temperature = (TextView) view.findViewById(R.id.point_temperatura);
             temperature.setText(String.format("Температура: %.1f °C", point.getTemperature()));
-
             condition = (TextView) view.findViewById(R.id.point_condition);
             condition.setText("Облачность: " + point.getCondition());
-
             humidity = (TextView) view.findViewById(R.id.point_humidity);
             humidity.setText("Влажность воздуха: " + point.getHumidity() + " %");
-
             pressure = (TextView) view.findViewById(R.id.point_pressure);
             pressure.setText("Давление: " + Utils.convertHpaToMMHg(point.getPressure()) + " мм рт.ст.");
-
             wind = (TextView) view.findViewById(R.id.point_wind_speed);
             wind.setText("Скорость ветра: " + String.valueOf(point.getWind()) + " м/с");
         } catch (Exception e) {

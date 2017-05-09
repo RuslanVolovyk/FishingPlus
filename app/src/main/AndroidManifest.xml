@@ -33,7 +33,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/WeatherTheme" />
         <activity
-            android:name=".MainActivity"
+            android:name=".screens.ChatActivity"
             android:windowSoftInputMode="stateHidden"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -45,7 +45,8 @@
         <activity
             android:name=".screens.MapsActivity"
             android:label="@string/title_activity_maps"></activity>
-        <activity android:name=".screens.PointsListActivity" />
+        <activity android:name=".screens.PointsListActivity"
+            />
         <activity android:name=".screens.PointActivity"></activity>
         <activity android:name=".screens.PhotoActivity"></activity>
     </application>

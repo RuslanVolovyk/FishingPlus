@@ -32,7 +32,6 @@ public class WeatherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
         weather = getIntent().getExtras().getParcelable(WEATHER);
-
         cityName = (TextView) findViewById(R.id.text_view_city);
         cityName.setText(weather.getCity() + ", " + weather.getCountry());
         temperature = (TextView) findViewById(R.id.text_view_temperatura);
@@ -56,72 +55,6 @@ public class WeatherActivity extends AppCompatActivity {
         lastUpdate = (TextView) findViewById(R.id.text_view_last_update);
         lastUpdate.setText(String.format("Последнее обновление: %s", Utils.getCurrentDate()));
 
-
-
-//        GPSCurrentPosition gpsCurrentPosition = new GPSCurrentPosition(WeatherActivity.this);
-//        location = gpsCurrentPosition.getLocation();
-//
-//
-//        if (location == null) {
-//            Log.v(TAG, "Location == null");
-//
-//        }
-//        double lat = location.getLatitude();
-//        double lon = location.getLongitude();
-//        WeatherTask weatherTask = new WeatherTask();
-//        weatherTask.execute(String.format("?lat=%.4f&lon=%.4f&units=metric", lat, lon));
-//
-//        Log.v(TAG, "Latitude and Longitude" + lat + lon);
-
     }
 
-//    public class WeatherTask extends AsyncTask<String, Void, Weather> {
-//
-//        @Override
-//        protected Weather doInBackground(String... strings) {
-//
-//            if (strings.length == 0) {
-//                return null;
-//            }
-//            String data = ((new WeatherHttpClient()).getWeatherData(strings[0]));
-//
-//            if (data == null) {
-//                Log.v(TAG, "Data null");
-//                return null;
-//            } else {
-//                Log.v("Data", data);
-//            }
-//            weather = JsonWeatherParser.getWeather(data);
-//
-//            if (weather == null) {
-//                Log.v(TAG, "Weather null");
-//
-//                return null;
-//            } else {
-//                Log.v(TAG, "Weather" + weather.place.getCity());
-//
-//            }
-//            return weather;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Weather weather) {
-//            super.onPostExecute(weather);
-//
-//            cityName.setText(weather.place.getCity() + ", " + weather.place.getCountry());
-//            temperature.setText(String.format("%.1f °C", weather.currentCondition.getTemp()));
-//            humidity.setText("Влажность воздуха: " + weather.currentCondition.getHuminity() + " %");
-//            pressure.setText("Давление: " + Utils.convertHpaToMMHg(weather.currentCondition.getPressure()) + " мм рт.ст.");
-//            wind.setText("Скорость ветра: " + weather.wind.getSpeed() + " м/с");
-//            sunRise.setText(String.format("Восход солнца: %s ", Utils.formatTimeFromSunSetandSunRise(weather.place.getSunrise())));
-//            sunSet.setText(String.format("Закат солнца: %s ", Utils.formatTimeFromSunSetandSunRise(weather.place.getSunset())));
-//            lastUpdate.setText(String.format("Последнее обновление: %s", Utils.getCurrentDate()));
-//            description.setText("Облачность: " + weather.currentCondition.getCondition() + " (" + weather.currentCondition.getDescription() + ")");
-//            Glide.with(WeatherActivity.this)
-//                    .load(Utils.getImage(weather.currentCondition.getIcon()))
-//                    .into(icon);
-//
-//        }
-//    }
 }
-

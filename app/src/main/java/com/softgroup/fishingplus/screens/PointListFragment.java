@@ -20,8 +20,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.softgroup.fishingplus.R;
 import com.softgroup.fishingplus.data.GPSCurrentPosition;
 import com.softgroup.fishingplus.models.Point;
@@ -41,37 +39,19 @@ public class PointListFragment extends Fragment {
     private static final String TAG = PointListFragment.class.getName();
     public static final String LAT = "lat";
     public static final String LON = "lon";
-    private static final String WETHER_DATA = "weather data";
     private RecyclerView recyclerView;
     private PointAdapter pointAdapter;
     private Weather weather;
     private Location location;
     private FloatingActionButton buttonAddPoint;
-    private FirebaseDatabase database;
-    private DatabaseReference ref;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-
-
-//        if (savedInstanceState != null) {
-//
-//            weather = savedInstanceState.getParcelable(WETHER_DATA);
-////
-////        database = FirebaseDatabase.getInstance();
-////        ref = database.getReference().child("point");
-//        }
         weather = getArguments().getParcelable(WEATHER);
 
     }
-
-//    @Override
-//    public void onSaveInstanceState(Bundle outState) {
-//        outState.putParcelable(WETHER_DATA, weather);
-//        super.onSaveInstanceState(outState);
-//    }
 
     @Nullable
     @Override
@@ -100,37 +80,6 @@ public class PointListFragment extends Fragment {
         return view;
     }
 
-
-//    public void updateUI() {
-//        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-//
-//        Log.v(TAG, "database" + database);
-//
-//        database.child("point").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                List pointlist = new ArrayList<>();
-//                for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
-//                    Point point = noteDataSnapshot.getValue(Point.class);
-//                    pointlist.add(point);
-//                }
-//                if (pointAdapter == null) {
-//                    pointAdapter = new PointAdapter(pointlist);
-//                    recyclerView.setAdapter(pointAdapter);
-//                } else {
-//                    pointAdapter.notifyDataSetChanged();
-//                }
-//
-//            }
-
-    //
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//
-//        });
-//    }
     public void updateUI() {
 
 
@@ -161,12 +110,9 @@ public class PointListFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_create_new_points:
-
                 createPoint();
                 return true;
-
             default:
-
         }
         return true;
     }
@@ -190,7 +136,6 @@ public class PointListFragment extends Fragment {
         point.setLon(lon);
         point.setLat(lat);
 
-
         PointSingle.get(getActivity()).addPoint(point);
 
         Intent intent = PointActivity.newIntent(getActivity(), point.getUuid());
@@ -204,7 +149,7 @@ public class PointListFragment extends Fragment {
 
         public PointAdapter(List<Point> pointList) {
             this.pointList = pointList;
-            setHasStableIds(true);
+            //setHasStableIds(true);
         }
 
         @Override
@@ -212,7 +157,6 @@ public class PointListFragment extends Fragment {
             inflater = LayoutInflater.from(getActivity());
             View view = inflater.inflate(R.layout.point_item, parent, false);
             return new ViewHolder(view);
-
         }
 
         @Override
@@ -226,9 +170,7 @@ public class PointListFragment extends Fragment {
             return pointList.size();
         }
 
-
         public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
             private TextView pointName;
             private TextView time;
             private ImageButton showOnTheMap;
@@ -279,7 +221,6 @@ public class PointListFragment extends Fragment {
                 Log.v(TAG, "Нажатие " + "Ветер " + point.getWind());
                 Log.v(TAG, "Нажатие " + "Координаты лат " + point.getLat());
                 Log.v(TAG, "Нажатие " + "Координаты лон " + point.getLon());
-
 
                 Intent intent = PointActivity.newIntent(getActivity(), point.getUuid());
                 startActivity(intent);

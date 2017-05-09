@@ -1,4 +1,4 @@
-package com.softgroup.fishingplus;
+package com.softgroup.fishingplus.screens;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -38,12 +38,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.softgroup.fishingplus.R;
+import com.softgroup.fishingplus.Utils;
 import com.softgroup.fishingplus.models.FriendlyMessage;
 import com.softgroup.fishingplus.models.MessageAdapter;
 import com.softgroup.fishingplus.models.Weather;
-import com.softgroup.fishingplus.screens.MapsActivity;
-import com.softgroup.fishingplus.screens.PointsListActivity;
-import com.softgroup.fishingplus.screens.WeatherActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -52,8 +51,8 @@ import java.util.List;
 import static com.softgroup.fishingplus.R.id.button_send;
 import static com.softgroup.fishingplus.screens.SplashActivity.WEATHER;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private static final String TAG = MainActivity.class.getName();
+public class ChatActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private static final String TAG = ChatActivity.class.getName();
     public static final int DEFAULT_MSG_LENGTH_LIMIT = 1000;
     private static final int RC_PHOTO_PICKER = 201;
     public static final int RC_SIGN_IN = 101;
@@ -323,7 +322,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.drawer_map) {
-            Intent intentMaps = new Intent(MainActivity.this, MapsActivity.class);
+            Intent intentMaps = new Intent(ChatActivity.this, MapsActivity.class);
             startActivity(intentMaps);
 
         } else if (id == R.id.drawer_add_photo_from_gallery) {
@@ -336,7 +335,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.menu_my_points) {
             weather = getIntent().getExtras().getParcelable(WEATHER);
 
-            Intent intent = new Intent(MainActivity.this, PointsListActivity.class);
+            Intent intent = new Intent(ChatActivity.this, PointsListActivity.class);
             intent.putExtra(WEATHER, weather);
 
             startActivity(intent);
@@ -345,7 +344,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             weather = getIntent().getExtras().getParcelable(WEATHER);
 
-            Intent intentWeather = new Intent(MainActivity.this, WeatherActivity.class);
+            Intent intentWeather = new Intent(ChatActivity.this, WeatherActivity.class);
             intentWeather.putExtra(WEATHER, weather);
             startActivity(intentWeather);
 

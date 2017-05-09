@@ -12,15 +12,13 @@ import com.softgroup.fishingplus.R;
 import java.util.UUID;
 
 public class PointActivity extends AppCompatActivity {
-    public static final String POINT_ID = "Point id";
+    private static final String POINT_ID = "Point id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment);
-
         FragmentManager fragmentManager = getSupportFragmentManager();
-
         Fragment fragment = fragmentManager.findFragmentById(R.id.fragment_container);
 
         if (fragment == null) {
@@ -35,9 +33,7 @@ public class PointActivity extends AppCompatActivity {
         return intent;
     }
 
-
     protected Fragment createFragment() {
-
         UUID uuid = (UUID) getIntent().getSerializableExtra(POINT_ID);
         return PointFragment.newInstance(uuid);
     }

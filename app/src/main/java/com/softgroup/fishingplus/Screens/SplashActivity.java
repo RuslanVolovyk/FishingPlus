@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.softgroup.fishingplus.MainActivity;
 import com.softgroup.fishingplus.Utils;
 import com.softgroup.fishingplus.data.GPSCurrentPosition;
 import com.softgroup.fishingplus.data.JsonWeatherParser;
@@ -15,15 +14,12 @@ import com.softgroup.fishingplus.data.WeatherHttpClient;
 import com.softgroup.fishingplus.models.Weather;
 
 
-public class SplashActivity extends AppCompatActivity  {
+public class SplashActivity extends AppCompatActivity {
     private static final String TAG = SplashActivity.class.getName();
-
     public static final String WEATHER = "weather";
-
     private double temperature;
     private String icon;
     private int pressure;
-
     private String sunRise;
     private String sunSet;
     private String lastUpdate;
@@ -32,9 +28,7 @@ public class SplashActivity extends AppCompatActivity  {
     private float wind;
     private float humidity;
 
-    //private static final int SPLASH_LENGTH = 20;
-
-   private Location location;
+    private Location location;
     private Weather weather;
 
     @Override
@@ -63,8 +57,6 @@ public class SplashActivity extends AppCompatActivity  {
 
     }
 
-
-
     public class WeatherTask extends AsyncTask<String, Void, Weather> {
 
         @Override
@@ -79,7 +71,7 @@ public class SplashActivity extends AppCompatActivity  {
                 Log.v(TAG, "Data null");
                 return null;
             } else {
-                Log.v(TAG, "Data "+ data);
+                Log.v(TAG, "Data " + data);
             }
             weather = JsonWeatherParser.getWeather(data);
 
@@ -97,7 +89,6 @@ public class SplashActivity extends AppCompatActivity  {
         @Override
         protected void onPostExecute(Weather weather) {
             super.onPostExecute(weather);
-
             cityName = weather.getCity() + ", " + weather.getCountry();
             temperature = weather.getTemp();
             humidity = weather.getHuminity();
@@ -113,10 +104,9 @@ public class SplashActivity extends AppCompatActivity  {
             Log.v(TAG, "Weather " + Utils.convertHpaToMMHg(weather.getPressure()));
             Log.v(TAG, "Weather " + Utils.formatTimeFromSunSetandSunRise(weather.getSunrise()));
             Log.v(TAG, "Weather " + Utils.formatTimeFromSunSetandSunRise(weather.getSunset()));
-
             Log.v(TAG, "Weather1 " + weather);
 
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            Intent intent = new Intent(SplashActivity.this, ChatActivity.class);
             intent.putExtra(WEATHER, weather);
             startActivity(intent);
         }

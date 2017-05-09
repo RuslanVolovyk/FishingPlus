@@ -7,7 +7,7 @@
     android:padding="16dp"
     android:background="@color/color_background_chat"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.softgroup.fishingplus.MainActivity">
+    tools:context="com.softgroup.fishingplus.screens.ChatActivity">
 
 
 

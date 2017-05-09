@@ -12,13 +12,12 @@ import static com.softgroup.fishingplus.screens.SplashActivity.WEATHER;
 
 public class PointsListActivity extends AppCompatActivity {
     private static final String TAG = PointsListActivity.class.getName();
-    Weather weather;
+    private Weather weather;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment);
-
 
         try {
             weather = getIntent().getExtras().getParcelable(WEATHER);
@@ -26,12 +25,9 @@ public class PointsListActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
         Bundle bundle = new Bundle();
         bundle.putParcelable(WEATHER, weather);
-
         FragmentManager fragmentManager = getSupportFragmentManager();
-
         Fragment fragment = fragmentManager.findFragmentById(R.id.fragment_container);
 
         if (fragment == null) {
