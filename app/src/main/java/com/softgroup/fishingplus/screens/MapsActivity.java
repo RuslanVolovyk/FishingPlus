@@ -123,8 +123,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             double distance = getDistanceBeetwenTwoPoints(currentLatitudePositionMarker, currentLongitudePositionMarker, latPointMarker, lonPointMarker);
             distance = Utils.convertToKm(distance);
 
+
+
             pointPositionMarker = mMap.addMarker(new MarkerOptions()
-                    .snippet(String.valueOf("К точке " + distance) + " км")
+                    .snippet(String.valueOf("К точке " + String.format("%.2f", distance)) + " км")
                     .position(new LatLng(latPointMarker, lonPointMarker))// Поставить координаты latPointMarker, lonPointMarker
                     .title("Цель"));
 

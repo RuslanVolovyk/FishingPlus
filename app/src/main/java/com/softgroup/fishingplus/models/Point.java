@@ -23,6 +23,19 @@ public class Point {
     private float humidity;
     private float wind;
 
+    public Point(UUID uuid, String name, String description, Date date, double lat, double lon, double temperature, float pressure, float humidity, float wind) {
+        this.uuid = uuid;
+        this.name = name;
+        this.description = description;
+        this.date = date;
+        this.lat = lat;
+        this.lon = lon;
+        this.temperature = temperature;
+        this.pressure = pressure;
+        this.humidity = humidity;
+        this.wind = wind;
+    }
+
     public Point() {
         uuid = UUID.randomUUID();
         DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy, HH:mm");

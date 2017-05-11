@@ -20,6 +20,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.softgroup.fishingplus.R;
 import com.softgroup.fishingplus.data.GPSCurrentPosition;
 import com.softgroup.fishingplus.models.Point;
@@ -44,6 +47,9 @@ public class PointListFragment extends Fragment {
     private Weather weather;
     private Location location;
     private FloatingActionButton buttonAddPoint;
+    private DatabaseReference pointDatabaseReference;
+    private FirebaseDatabase firebaseDatabase;
+    private ChildEventListener childEventListener;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,7 +74,15 @@ public class PointListFragment extends Fragment {
         });
 
 
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        pointDatabaseReference = firebaseDatabase.getReference().child("my_point");
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_points);
+
+//        List<Point> pointList = new ArrayList<>();
+//        PointAdapter pointAdapter = new PointAdapter(pointList);
+//        recyclerView.setAdapter(pointAdapter);
+
         recyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getActivity())
                 .color(Color.BLACK)
                 .sizeResId(R.dimen.divider)
@@ -134,6 +148,21 @@ public class PointListFragment extends Fragment {
         point.setLon(lon);
         point.setLat(lat);
 
+
+
+        pointDatabaseReference.push().setValue(point);
+
+        Log.v(TAG, "Нажатие " + "Дата " + point.getDate());
+        Log.v(TAG, "Нажатие " + "Название " + point.getName());
+        Log.v(TAG, "Нажатие " + "ІД " + point.getUuid());
+        // Log.v(TAG, "Нажатие " + "Облачность " + point.getCondition());
+        Log.v(TAG, "Нажатие " + "Влажность " + point.getHumidity());
+        Log.v(TAG, "Нажатие " + "Температура " + point.getTemperature());
+        Log.v(TAG, "Нажатие " + "Ветер " + point.getWind());
+        Log.v(TAG, "Нажатие " + "Координаты лат " + point.getLat());
+        Log.v(TAG, "Нажатие " + "Координаты лон " + point.getLon());
+
+
         PointSingle.get(getActivity()).addPoint(point);
 
         Intent intent = PointActivity.newIntent(getActivity(), point.getUuid());
@@ -145,7 +174,7 @@ public class PointListFragment extends Fragment {
         private List<Point> pointList;
         private LayoutInflater inflater;
 
-        public PointAdapter(List<Point> pointList) {
+        public PointAdapter( List<Point> pointList) {
             this.pointList = pointList;
             //setHasStableIds(true);
         }

@@ -93,9 +93,9 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
         messagesDatabaseReference = firebaseDatabase.getReference().child("messages");
         chatPhotosStorageReference = firebaseStorage.getReference().child("chat_photos");
         messageListView = (ListView) findViewById(R.id.message_list_view);
@@ -103,8 +103,11 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
         List<FriendlyMessage> friendlyMessages = new ArrayList<>();
         messageAdapter = new MessageAdapter(this, R.layout.layout_message_item, friendlyMessages);
         messageListView.setAdapter(messageAdapter);
+
+
         progressBar.setVisibility(ProgressBar.INVISIBLE);
         editTextInputMessage = (EditText) findViewById(R.id.edit_text_input_text);
+
         editTextInputMessage.setFilters(new InputFilter[]{new InputFilter.LengthFilter(sharedPreferences
                 .getInt(Utils.FRIENDLY_MSG_LENGTH, DEFAULT_MSG_LENGTH_LIMIT))});
         editTextInputMessage.addTextChangedListener(new TextWatcher() {
