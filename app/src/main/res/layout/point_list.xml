@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.design.widget.CoordinatorLayout
-    android:id="@+id/coordinator_layout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_background_chat"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:background="@color/color_background_chat">
 
 
     <android.support.v7.widget.RecyclerView
@@ -20,17 +19,16 @@
         tools:listitem="@layout/point_item" />
 
 
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:layout_margin="@dimen/fab_margin"
         android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:clickable="true"
         android:src="@drawable/ic_add_poin_black_24dp"
-        app:layout_anchorGravity="bottom|right|end"
         app:backgroundTint="@color/colorPrimaryDark"
+        app:layout_anchorGravity="bottom|right|end"
         app:rippleColor="@color/colorPrimary" />
 
 </android.support.design.widget.CoordinatorLayout>

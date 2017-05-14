@@ -17,16 +17,18 @@ public class PointSingle {
 
     public static PointSingle get(Context context) {
 
-        if (pointSingle == null){
+        if (pointSingle == null) {
             pointSingle = new PointSingle(context);
 
         }
         return pointSingle;
     }
-    public void addPoint(Point point){
+
+    public void addPoint(Point point) {
         pointList.add(point);
     }
-    public void deletePoint(Point point){
+
+    public void deletePoint(Point point) {
         pointList.remove(point);
     }
 
@@ -34,13 +36,15 @@ public class PointSingle {
         pointList = new ArrayList<>();
 
     }
-    public List<Point> getPointList(){
+
+    public List<Point> getPointList() {
 
         return pointList;
     }
-    public Point getPoint(UUID uuid){
-        for (Point point: pointList) {
-            if (point.getUuid().equals(uuid)){
+
+    public Point getPoint(UUID uuid) {
+        for (Point point : pointList) {
+            if (point.getUuid().equals(uuid)) {
                 return point;
             }
 

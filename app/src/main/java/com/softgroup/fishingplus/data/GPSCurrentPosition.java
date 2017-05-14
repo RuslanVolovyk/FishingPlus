@@ -21,17 +21,17 @@ public class GPSCurrentPosition extends Service implements LocationListener {
     double longitude;
 
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10;
-    private static final long MIN_TIME_BW_UPDATES = 6000 ;
+    private static final long MIN_TIME_BW_UPDATES = 6000;
     protected LocationManager locationManager;
 
-    public GPSCurrentPosition( Context context) {
+    public GPSCurrentPosition(Context context) {
         this.mContext = context;
         getLocation();
     }
 
     public Location getLocation() {
         try {
-            locationManager = (LocationManager)mContext.getSystemService(LOCATION_SERVICE);
+            locationManager = (LocationManager) mContext.getSystemService(LOCATION_SERVICE);
 
             isGPSEnabled = locationManager
                     .isProviderEnabled(LocationManager.GPS_PROVIDER);

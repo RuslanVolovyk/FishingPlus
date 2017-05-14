@@ -22,13 +22,13 @@ public class PointActivity extends AppCompatActivity {
         Fragment fragment = fragmentManager.findFragmentById(R.id.fragment_container_detail);
 
         if (fragment == null) {
-            fragment =createFragment();
+            fragment = createFragment();
             fragmentManager.beginTransaction().add(R.id.fragment_container_detail, fragment).commit();
         }
     }
 
-    public static Intent newIntent(Context context, UUID uuid){
-        Intent intent = new Intent (context, PointActivity.class);
+    public static Intent newIntent(Context context, UUID uuid) {
+        Intent intent = new Intent(context, PointActivity.class);
         intent.putExtra(POINT_ID, uuid);
         return intent;
     }

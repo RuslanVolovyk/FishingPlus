@@ -13,21 +13,20 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:layout_gravity="center"
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="51dp"
+        android:layout_gravity="center"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         app:srcCompat="@android:drawable/sym_def_app_icon" />
 
     <TextView
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="@string/text_nav_header"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
 
 
 </LinearLayout>

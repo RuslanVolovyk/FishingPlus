@@ -17,50 +17,55 @@ public class Utils {
     public static final String BASE_URL = "http://api.openweathermap.org/data/2.5/weather";
 
 
-    public static JSONObject getObject (String string, JSONObject jsonObject) throws JSONException {
+    public static JSONObject getObject(String string, JSONObject jsonObject) throws JSONException {
 
         return jsonObject.getJSONObject(string);
     }
-    public static String getString (String string, JSONObject jsonObject) throws JSONException{
+
+    public static String getString(String string, JSONObject jsonObject) throws JSONException {
 
         return jsonObject.getString(string);
     }
 
-    public static float getFloat (String string, JSONObject jsonObject) throws JSONException{
+    public static float getFloat(String string, JSONObject jsonObject) throws JSONException {
 
         return (float) jsonObject.getDouble(string);
     }
-    public static double getDouble (String string, JSONObject jsonObject) throws JSONException{
+
+    public static double getDouble(String string, JSONObject jsonObject) throws JSONException {
 
         return (float) jsonObject.getDouble(string);
     }
-    public static int getInt (String string, JSONObject jsonObject) throws JSONException{
+
+    public static int getInt(String string, JSONObject jsonObject) throws JSONException {
 
         return jsonObject.getInt(string);
     }
-    public static String getImage(String icon){
-        return String.format("http://openweathermap.org/img/w/%s.png",icon);
+
+    public static String getImage(String icon) {
+        return String.format("http://openweathermap.org/img/w/%s.png", icon);
     }
+
     public static String getCurrentDate() {
         DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy, HH:mm");
         Date date = new Date();
         return dateFormat.format(date);
     }
-    public static String formatTimeFromSunSetandSunRise(double unixTimeStamp){
+
+    public static String formatTimeFromSunSetandSunRise(double unixTimeStamp) {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm");
         Date date = new Date();
-        date.setTime((long)unixTimeStamp*1000);
+        date.setTime((long) unixTimeStamp * 1000);
         return dateFormat.format(date);
     }
-    public static int convertHpaToMMHg (float pressure){
+
+    public static int convertHpaToMMHg(float pressure) {
 
         return (int) (pressure * 0.75006375541921);
     }
-//    public static boolean isBlankField(EditText etPersonData) {
-//        return etPersonData.getText().toString().trim().equals("");
-//    }
-    public static double convertToKm(double distanceInM){
-        return distanceInM /1000;
+
+    public static double convertToKm(double distanceInM) {
+        return distanceInM / 1000;
     }
 
 }

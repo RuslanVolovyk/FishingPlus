@@ -35,9 +35,9 @@ public class WeatherActivity extends AppCompatActivity {
 
             weather = getIntent().getExtras().getParcelable(WEATHER);
 
-            if (weather == null){
+            if (weather == null) {
                 Toast.makeText(this, "Проверьте подключение к интернету", Toast.LENGTH_LONG).show();
-            }else {
+            } else {
 
                 cityName = (TextView) findViewById(R.id.text_view_city);
                 cityName.setText(weather.getCity() + ", " + weather.getCountry());

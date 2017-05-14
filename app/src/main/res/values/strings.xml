@@ -45,6 +45,8 @@
     <string name="city">Город</string>
     <string name="temperatura">Температура: %.1f °C</string>
     <string name="temperatura2">"%.1f °C"</string>
+    <string name="my_point_label">Мои точки</string>
+    <string name="my_point_detail_label">Описание точки</string>
 
 
 </resources>

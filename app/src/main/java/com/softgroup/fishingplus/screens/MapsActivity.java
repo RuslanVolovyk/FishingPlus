@@ -60,9 +60,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         location = gpsCurrentPosition.getLocation();
 
-        if (location == null){
+        if (location == null) {
             Toast.makeText(this, "Проверьте подключение к геолокации", Toast.LENGTH_LONG).show();
-        }else {
+        } else {
 
             currentLatitudePositionMarker = location.getLatitude();
             currentLongitudePositionMarker = location.getLongitude();
@@ -129,7 +129,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             double distance = getDistanceBeetwenTwoPoints(currentLatitudePositionMarker, currentLongitudePositionMarker, latPointMarker, lonPointMarker);
             distance = Utils.convertToKm(distance);
-
 
 
             pointPositionMarker = mMap.addMarker(new MarkerOptions()

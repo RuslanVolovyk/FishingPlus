@@ -80,7 +80,6 @@ public class PointListFragment extends Fragment {
         });
 
 
-
         firebaseDatabase = FirebaseDatabase.getInstance();
         pointDatabaseReference = firebaseDatabase.getReference().child("my_point");
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_points);
@@ -148,10 +147,10 @@ public class PointListFragment extends Fragment {
 //    }
 
 
-        @Override
+    @Override
     public void onResume() {
         super.onResume();
-          //  attachDatabaseReadListener();
+        //  attachDatabaseReadListener();
         updateUI();
     }
 
@@ -178,7 +177,7 @@ public class PointListFragment extends Fragment {
         try {
             location = gpsCurrentPosition.getLocation();
 
-            if (location == null){
+            if (location == null) {
                 Toast.makeText(getActivity(), "Проверьте подключение к геолокации", Toast.LENGTH_LONG).show();
             }
 
@@ -226,7 +225,7 @@ public class PointListFragment extends Fragment {
         private List<Point> pointList;
         private LayoutInflater inflater;
 
-        public PointAdapter( List<Point> pointList) {
+        public PointAdapter(List<Point> pointList) {
             this.pointList = pointList;
             //setHasStableIds(true);
         }

@@ -2,117 +2,120 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/color_background_chat"
+    android:orientation="vertical"
     android:weightSum="2">
 
 
     <LinearLayout
-        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
-            android:gravity="center"
             style="?android:listSeparatorTextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/point_title_label" />
-        <EditText
             android:gravity="center"
+            android:text="@string/point_title_label" />
+
+        <EditText
             android:id="@+id/point_title_label_hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
-            android:hint="@string/point_title_label_hint" />
-        <TextView
             android:gravity="center"
+            android:hint="@string/point_title_label_hint" />
+
+        <TextView
             style="?android:listSeparatorTextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/point_description_label" />
-        <EditText
             android:gravity="center"
+            android:text="@string/point_description_label" />
+
+        <EditText
             android:id="@+id/point_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
+            android:gravity="center"
             android:hint="@string/point_description_label_hint" />
-
 
 
     </LinearLayout>
 
     <LinearLayout
         style="?android:listSeparatorTextViewStyle"
-        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
-            android:textColor="#000"
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/weather_conditions" />
+            android:gravity="center"
+            android:text="@string/weather_conditions"
+            android:textColor="#000" />
 
         <TextView
-            android:textColor="#000"
             android:id="@+id/point_temperatura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/weather_temp" />
+            android:text="@string/weather_temp"
+            android:textColor="#000" />
+
         <TextView
-            android:textColor="#000"
             android:id="@+id/point_pressure"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/pressure" />
+            android:text="@string/pressure"
+            android:textColor="#000" />
+
         <TextView
-            android:textColor="#000"
             android:id="@+id/point_humidity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/weather_humidity" />
+            android:text="@string/weather_humidity"
+            android:textColor="#000" />
         <!--<TextView-->
-            <!--android:textColor="#000"-->
-            <!--android:id="@+id/point_condition"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="@string/weather_cloudy" />-->
+        <!--android:textColor="#000"-->
+        <!--android:id="@+id/point_condition"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/weather_cloudy" />-->
         <TextView
-            android:textColor="#000"
             android:id="@+id/point_wind_speed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/weather_speed_wind" />
+            android:text="@string/weather_speed_wind"
+            android:textColor="#000" />
+
         <TextView
-            android:textColor="#000"
             android:id="@+id/point_longituda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/lon" />
+            android:text="@string/lon"
+            android:textColor="#000" />
 
         <TextView
-            android:textColor="#000"
             android:id="@+id/point_lantituda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/lat" />
+            android:text="@string/lat"
+            android:textColor="#000" />
 
         <TextView
-            android:textColor="#000"
             android:id="@+id/point_date"
-            android:textStyle="bold|italic"
-            android:gravity="center"
             style="?android:textStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/point_date" />
-
-
+            android:gravity="center"
+            android:text="@string/point_date"
+            android:textColor="#000"
+            android:textStyle="bold|italic" />
 
 
     </LinearLayout>
