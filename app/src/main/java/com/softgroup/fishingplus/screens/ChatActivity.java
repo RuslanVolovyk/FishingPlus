@@ -13,6 +13,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -23,7 +24,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-import android.support.v7.widget.Toolbar;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -82,22 +82,29 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(ProgressBar.VISIBLE);
+
         weather = getIntent().getExtras().getParcelable(WEATHER);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
+
         messagesDatabaseReference = firebaseDatabase.getReference().child("messages");
         chatPhotosStorageReference = firebaseStorage.getReference().child("chat_photos");
+
         messageListView = (ListView) findViewById(R.id.message_list_view);
 
         List<FriendlyMessage> friendlyMessages = new ArrayList<>();
@@ -106,8 +113,8 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
 
 
         progressBar.setVisibility(ProgressBar.INVISIBLE);
-        editTextInputMessage = (EditText) findViewById(R.id.edit_text_input_text);
 
+        editTextInputMessage = (EditText) findViewById(R.id.edit_text_input_text);
         editTextInputMessage.setFilters(new InputFilter[]{new InputFilter.LengthFilter(sharedPreferences
                 .getInt(Utils.FRIENDLY_MSG_LENGTH, DEFAULT_MSG_LENGTH_LIMIT))});
         editTextInputMessage.addTextChangedListener(new TextWatcher() {
@@ -143,20 +150,30 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    onSignedInInitialize(user.getDisplayName());
-                } else {
-                    providers.add(new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build());
-                    providers.add(new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build());
-                    providers.add(new AuthUI.IdpConfig.Builder(AuthUI.FACEBOOK_PROVIDER).build());
-                    startActivityForResult(AuthUI.getInstance()
-                            .createSignInIntentBuilder()
-                            .setIsSmartLockEnabled(false)
-                            .setProviders(providers)
-                            .build(), RC_SIGN_IN);
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) throws IllegalArgumentException {
+
+
+                FirebaseUser user;
+
+                try {
+                    user = firebaseAuth.getCurrentUser();
+                    if (user != null) {
+                        onSignedInInitialize(user.getDisplayName());
+                    } else {
+                        providers.add(new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build());
+                        providers.add(new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build());
+                        startActivityForResult(AuthUI.getInstance()
+                                .createSignInIntentBuilder()
+                                .setIsSmartLockEnabled(false)
+                                .setProviders(providers)
+                                .build(), RC_SIGN_IN);
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(ChatActivity.this, "Проверьте подключение к интернету", Toast.LENGTH_LONG).show();
                 }
+
+
+
             }
         };
         providers = new ArrayList<>();

@@ -122,22 +122,15 @@ public class PointFragment extends Fragment {
                 public void afterTextChanged(Editable editable) {
                 }
             });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
+
             datePoint = (TextView) view.findViewById(R.id.point_date);
             datePoint.setText(point.getDate().toString());
-
-
             lat = (TextView) view.findViewById(R.id.point_lantituda);
             lat.setText(String.valueOf("Широта: " + point.getLat()));
             lon = (TextView) view.findViewById(R.id.point_longituda);
             lon.setText(String.valueOf("Долгота: " + point.getLon()));
             temperature = (TextView) view.findViewById(R.id.point_temperatura);
-            temperature.setText(String.format("Температура: %.1f °C", point.getTemperature()));
-//            condition = (TextView) view.findViewById(R.id.point_condition);
-//            condition.setText("Облачность: " + point.getCondition());
+            temperature.setText(String.format(getString(R.string.temperatura), point.getTemperature()));
             humidity = (TextView) view.findViewById(R.id.point_humidity);
             humidity.setText("Влажность воздуха: " + point.getHumidity() + " %");
             pressure = (TextView) view.findViewById(R.id.point_pressure);

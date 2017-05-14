@@ -5,6 +5,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -56,11 +57,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         GPSCurrentPosition gpsCurrentPosition = new GPSCurrentPosition(this);
+
         location = gpsCurrentPosition.getLocation();
 
-        currentLatitudePositionMarker = location.getLatitude();
-        currentLongitudePositionMarker = location.getLongitude();
+        if (location == null){
+            Toast.makeText(this, "Проверьте подключение к геолокации", Toast.LENGTH_LONG).show();
+        }else {
 
+            currentLatitudePositionMarker = location.getLatitude();
+            currentLongitudePositionMarker = location.getLongitude();
+
+        }
 
         latPointMarker = getIntent().getDoubleExtra(LAT, 0.0);
         lonPointMarker = getIntent().getDoubleExtra(LON, 0.0);

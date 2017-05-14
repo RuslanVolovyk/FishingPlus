@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="15"
+            android:text="15 °C"
             android:textColor="@android:color/white"
             android:textSize="46sp"
             android:textStyle="bold" />
@@ -47,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="City"
+            android:text="@string/city"
             android:textColor="@android:color/white"
             android:textSize="28sp"
             android:textStyle="bold" />
@@ -66,21 +66,11 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:gravity="center"
-            android:text="wind"
+            android:text="@string/weather_speed_wind"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:textStyle="italic|bold" />
 
-        <!--<TextView-->
-            <!--android:id="@+id/text_view_clouds"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginBottom="8dp"-->
-            <!--android:gravity="center"-->
-            <!--android:text="clouds"-->
-            <!--android:textColor="@android:color/white"-->
-            <!--android:textSize="16sp"-->
-            <!--android:textStyle="italic|bold" />-->
 
         <TextView
             android:id="@+id/text_view_pressure"
@@ -88,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:gravity="center"
-            android:text="pressure"
+            android:text="@string/pressure"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:textStyle="italic|bold" />
@@ -99,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:gravity="center"
-            android:text="humidity"
+            android:text="@string/weather_humidity"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:textStyle="italic|bold" />
@@ -110,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:gravity="center"
-            android:text="sunrise"
+            android:text="@string/sunrise"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:textStyle="italic|bold" />
@@ -121,7 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:gravity="center"
-            android:text="sunset"
+            android:text="@string/sunset"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:textStyle="italic|bold" />
@@ -132,7 +122,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:gravity="center"
-            android:text="last update"
+            android:text="@string/last_update"
             android:textColor="@android:color/white"
             android:textSize="12sp"
             android:textStyle="italic|bold" />

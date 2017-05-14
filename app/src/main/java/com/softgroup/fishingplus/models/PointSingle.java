@@ -32,12 +32,7 @@ public class PointSingle {
 
     private PointSingle(Context context) {
         pointList = new ArrayList<>();
-//        for (int i= 0; i <100 ; i++) {
-//            Point point = new Point();
-//            point.setName("Point # " + i);
-//            pointList.add(point);
-//
-//        }
+
     }
     public List<Point> getPointList(){
 

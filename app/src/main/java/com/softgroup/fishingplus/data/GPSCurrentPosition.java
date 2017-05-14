@@ -12,16 +12,16 @@ import android.util.Log;
 
 
 public class GPSCurrentPosition extends Service implements LocationListener {
-   final private Context mContext;
+    private static final String TAG = GPSCurrentPosition.class.getName();
+    final private Context mContext;
     boolean isGPSEnabled = false;
     boolean isNetworkEnabled = false;
-    Location location; // location
-    double latitude; // latitude
-    double longitude; // longitude
+    Location location;
+    double latitude;
+    double longitude;
 
-    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
-    private static final long MIN_TIME_BW_UPDATES = 6000 ; // 1 minute
-
+    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10;
+    private static final long MIN_TIME_BW_UPDATES = 6000 ;
     protected LocationManager locationManager;
 
     public GPSCurrentPosition( Context context) {
@@ -48,7 +48,7 @@ public class GPSCurrentPosition extends Service implements LocationListener {
                                 MIN_TIME_BW_UPDATES,
                                 MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
 
-                        Log.d("Network", "Network");
+                        Log.d(TAG, "Network");
                         if (locationManager != null) {
                             location = locationManager
                                     .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
@@ -69,7 +69,7 @@ public class GPSCurrentPosition extends Service implements LocationListener {
                                     MIN_TIME_BW_UPDATES,
                                     MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
 
-                            Log.d("GPS Enabled", "GPS Enabled");
+                            Log.d(TAG, "GPS Enabled");
                             if (locationManager != null) {
                                 location = locationManager
                                         .getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -116,8 +116,6 @@ public class GPSCurrentPosition extends Service implements LocationListener {
         if (location != null) {
             latitude = location.getLatitude();
         }
-
-        // return latitude
         return latitude;
     }
 
@@ -126,8 +124,6 @@ public class GPSCurrentPosition extends Service implements LocationListener {
         if (location != null) {
             longitude = location.getLongitude();
         }
-
-        // return longitude
         return longitude;
     }
 
@@ -136,4 +132,3 @@ public class GPSCurrentPosition extends Service implements LocationListener {
         return null;
     }
 }
-//

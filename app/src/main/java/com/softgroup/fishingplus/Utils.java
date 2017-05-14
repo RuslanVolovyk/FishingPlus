@@ -18,9 +18,8 @@ public class Utils {
 
 
     public static JSONObject getObject (String string, JSONObject jsonObject) throws JSONException {
-        JSONObject object = jsonObject.getJSONObject(string);
 
-        return object;
+        return jsonObject.getJSONObject(string);
     }
     public static String getString (String string, JSONObject jsonObject) throws JSONException{
 
@@ -54,16 +53,14 @@ public class Utils {
         return dateFormat.format(date);
     }
     public static int convertHpaToMMHg (float pressure){
-        int convertPressure = (int) (pressure * 0.75006375541921);
 
-        return convertPressure;
+        return (int) (pressure * 0.75006375541921);
     }
 //    public static boolean isBlankField(EditText etPersonData) {
 //        return etPersonData.getText().toString().trim().equals("");
 //    }
     public static double convertToKm(double distanceInM){
-        double distance = distanceInM /1000;
-        return distance;
+        return distanceInM /1000;
     }
 
 }

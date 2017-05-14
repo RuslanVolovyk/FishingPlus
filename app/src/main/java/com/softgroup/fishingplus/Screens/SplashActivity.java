@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.softgroup.fishingplus.Utils;
 import com.softgroup.fishingplus.data.GPSCurrentPosition;
 import com.softgroup.fishingplus.data.JsonWeatherParser;
 import com.softgroup.fishingplus.data.WeatherHttpClient;
@@ -17,16 +16,6 @@ import com.softgroup.fishingplus.models.Weather;
 public class SplashActivity extends AppCompatActivity {
     private static final String TAG = SplashActivity.class.getName();
     public static final String WEATHER = "weather";
-    private double temperature;
-    private String icon;
-    private int pressure;
-    private String sunRise;
-    private String sunSet;
-    private String lastUpdate;
-    private String cityName;
-    private String description;
-    private float wind;
-    private float humidity;
 
     private Location location;
     private Weather weather;
@@ -89,22 +78,6 @@ public class SplashActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Weather weather) {
             super.onPostExecute(weather);
-            cityName = weather.getCity() + ", " + weather.getCountry();
-            temperature = weather.getTemp();
-            humidity = weather.getHuminity();
-            pressure = Utils.convertHpaToMMHg(weather.getPressure());
-            wind = weather.getSpeed();
-            sunRise = Utils.formatTimeFromSunSetandSunRise(weather.getSunrise());
-            sunSet = Utils.formatTimeFromSunSetandSunRise(weather.getSunset());
-            lastUpdate = Utils.getCurrentDate();
-           // description = weather.getCondition() + " (" + weather.getDescription() + ")";
-            icon = Utils.getImage(weather.getIcon());
-            Log.v(TAG, "Weather " + weather.getTemp());
-            Log.v(TAG, "Weather " + weather.getHuminity());
-            Log.v(TAG, "Weather " + Utils.convertHpaToMMHg(weather.getPressure()));
-            Log.v(TAG, "Weather " + Utils.formatTimeFromSunSetandSunRise(weather.getSunrise()));
-            Log.v(TAG, "Weather " + Utils.formatTimeFromSunSetandSunRise(weather.getSunset()));
-            Log.v(TAG, "Weather1 " + weather);
 
             Intent intent = new Intent(SplashActivity.this, ChatActivity.class);
             intent.putExtra(WEATHER, weather);

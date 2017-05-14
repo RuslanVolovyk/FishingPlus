@@ -15,7 +15,6 @@ import java.net.URL;
 
 public class WeatherHttpClient {
 
-    //http connection
     public String getWeatherData(String coord) {
 
         HttpURLConnection connection;

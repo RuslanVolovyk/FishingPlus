@@ -46,6 +46,7 @@ public class PointListFragment extends Fragment {
     private PointAdapter pointAdapter;
     private Weather weather;
     private Location location;
+
     private FloatingActionButton buttonAddPoint;
     private DatabaseReference pointDatabaseReference;
     private FirebaseDatabase firebaseDatabase;
@@ -55,7 +56,12 @@ public class PointListFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        weather = getArguments().getParcelable(WEATHER);
+
+        try {
+            weather = getArguments().getParcelable(WEATHER);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -80,7 +86,7 @@ public class PointListFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_points);
 
 //        List<Point> pointList = new ArrayList<>();
-//        PointAdapter pointAdapter = new PointAdapter(pointList);
+//        pointAdapter = new PointAdapter(pointList);
 //        recyclerView.setAdapter(pointAdapter);
 
         recyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getActivity())
@@ -106,9 +112,46 @@ public class PointListFragment extends Fragment {
         }
     }
 
-    @Override
+//    private void attachDatabaseReadListener() {
+//        if (childEventListener == null){
+//            childEventListener = new ChildEventListener() {
+//                @Override
+//                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//
+//                    Point point = dataSnapshot.getValue(Point.class);
+//                    pointAdapter.add(point);
+//                }
+//
+//                @Override
+//                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//
+//                }
+//
+//                @Override
+//                public void onChildRemoved(DataSnapshot dataSnapshot) {
+//
+//                }
+//
+//                @Override
+//                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//                }
+//
+//                @Override
+//                public void onCancelled(DatabaseError databaseError) {
+//
+//                }
+//            };
+//            pointDatabaseReference.addChildEventListener(childEventListener);
+//
+//        }
+//    }
+
+
+        @Override
     public void onResume() {
         super.onResume();
+          //  attachDatabaseReadListener();
         updateUI();
     }
 
@@ -131,42 +174,51 @@ public class PointListFragment extends Fragment {
 
     private void createPoint() {
         GPSCurrentPosition gpsCurrentPosition = new GPSCurrentPosition(getActivity());
-        location = gpsCurrentPosition.getLocation();
 
-        double lat = location.getLatitude();
-        double lon = location.getLongitude();
-        Log.v(TAG, "Нажатие " + "Ветер " + lat);
-        Log.v(TAG, "Нажатие " + "Ветер " + lon);
+        try {
+            location = gpsCurrentPosition.getLocation();
 
+            if (location == null){
+                Toast.makeText(getActivity(), "Проверьте подключение к геолокации", Toast.LENGTH_LONG).show();
+            }
 
-        Point point = new Point();
-        point.setTemperature(weather.getTemp());
-        // point.setCondition(weather.getCondition() + weather.getDescription());
-        point.setHumidity(weather.getHuminity());
-        point.setWind(weather.getSpeed());
-        point.setPressure(weather.getPressure());
-        point.setLon(lon);
-        point.setLat(lat);
+            double lat = location.getLatitude();
+            double lon = location.getLongitude();
+            Log.v(TAG, "Нажатие " + "Ветер " + lat);
+            Log.v(TAG, "Нажатие " + "Ветер " + lon);
 
 
+            Point point = new Point();
+            point.setTemperature(weather.getTemp());
+            point.setHumidity(weather.getHuminity());
+            point.setWind(weather.getSpeed());
+            point.setPressure(weather.getPressure());
+            point.setLon(lon);
+            point.setLat(lat);
 
-        pointDatabaseReference.push().setValue(point);
+            pointDatabaseReference.push().setValue(point);
 
-        Log.v(TAG, "Нажатие " + "Дата " + point.getDate());
-        Log.v(TAG, "Нажатие " + "Название " + point.getName());
-        Log.v(TAG, "Нажатие " + "ІД " + point.getUuid());
-        // Log.v(TAG, "Нажатие " + "Облачность " + point.getCondition());
-        Log.v(TAG, "Нажатие " + "Влажность " + point.getHumidity());
-        Log.v(TAG, "Нажатие " + "Температура " + point.getTemperature());
-        Log.v(TAG, "Нажатие " + "Ветер " + point.getWind());
-        Log.v(TAG, "Нажатие " + "Координаты лат " + point.getLat());
-        Log.v(TAG, "Нажатие " + "Координаты лон " + point.getLon());
+            Log.v(TAG, "Нажатие " + "Дата " + point.getDate());
+            Log.v(TAG, "Нажатие " + "Название " + point.getName());
+            Log.v(TAG, "Нажатие " + "ІД " + point.getUuid());
+            Log.v(TAG, "Нажатие " + "Влажность " + point.getHumidity());
+            Log.v(TAG, "Нажатие " + "Температура " + point.getTemperature());
+            Log.v(TAG, "Нажатие " + "Ветер " + point.getWind());
+            Log.v(TAG, "Нажатие " + "Координаты лат " + point.getLat());
+            Log.v(TAG, "Нажатие " + "Координаты лон " + point.getLon());
+
+            PointSingle.get(getActivity()).addPoint(point);
+
+            Intent intent = PointActivity.newIntent(getActivity(), point.getUuid());
 
 
-        PointSingle.get(getActivity()).addPoint(point);
+            startActivity(intent);
+        } catch (Exception e) {
 
-        Intent intent = PointActivity.newIntent(getActivity(), point.getUuid());
-        startActivity(intent);
+
+            Toast.makeText(getActivity(), "Проверьте подключение к интернету", Toast.LENGTH_LONG).show();
+        }
+
     }
 
 
@@ -239,11 +291,9 @@ public class PointListFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                // Log.v(TAG, "Нажатие " + "Описние " + point.getDescription());
                 Log.v(TAG, "Нажатие " + "Дата " + point.getDate());
                 Log.v(TAG, "Нажатие " + "Название " + point.getName());
                 Log.v(TAG, "Нажатие " + "ІД " + point.getUuid());
-                // Log.v(TAG, "Нажатие " + "Облачность " + point.getCondition());
                 Log.v(TAG, "Нажатие " + "Влажность " + point.getHumidity());
                 Log.v(TAG, "Нажатие " + "Температура " + point.getTemperature());
                 Log.v(TAG, "Нажатие " + "Ветер " + point.getWind());

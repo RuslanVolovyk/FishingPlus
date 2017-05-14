@@ -14,7 +14,6 @@ public class Point {
     private UUID uuid;
     private String name;
     private String description;
-//    private String condition;
     private Date date;
     private double lat;
     private double lon;
@@ -22,6 +21,7 @@ public class Point {
     private float pressure;
     private float humidity;
     private float wind;
+
 
     public Point(UUID uuid, String name, String description, Date date, double lat, double lon, double temperature, float pressure, float humidity, float wind) {
         this.uuid = uuid;
@@ -101,14 +101,6 @@ public class Point {
     public void setWind(float wind) {
         this.wind = wind;
     }
-
-//    public String getCondition() {
-//        return condition;
-//    }
-//
-//    public void setCondition(String condition) {
-//        this.condition = condition;
-//    }
 
     public String getName() {
         return name;

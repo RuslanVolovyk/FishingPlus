@@ -36,6 +36,15 @@
     <string name="photo_galery">Фото галерея</string>
     <string name="send">Отп.</string>
     <string name="text_nav_header">«Боги не засчитывают в счет жизни время, проведенное на рыбалке»</string>
+    <string name="sunrise">Восход солнца</string>
+    <string name="sunset">Закат солнца</string>
+    <string name="last_update">Последнее обновление даных погоды</string>
+    <string name="humidity">humidity</string>
+    <string name="pressure_weather">pressure_weather</string>
+    <string name="wind">wind</string>
+    <string name="city">Город</string>
+    <string name="temperatura">Температура: %.1f °C</string>
+    <string name="temperatura2">"%.1f °C"</string>
 
 
 </resources>
