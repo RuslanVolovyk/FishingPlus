@@ -50,7 +50,7 @@
 
         <activity android:name=".screens.PointActivity"
             android:label="@string/my_point_detail_label">
-            
+
         </activity>
 
         <activity android:name=".screens.PhotoActivity"></activity>
