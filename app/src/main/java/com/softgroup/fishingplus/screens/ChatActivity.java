@@ -57,6 +57,7 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
     private static final int RC_PHOTO_PICKER = 201;
     public static final int RC_SIGN_IN = 101;
     private static final int REQUEST_IMAGE_CAPTURE = 102;
+    //private static final String WEATHER = "key weather";
     private Button buttonSendMessage;
     private EditText editTextInputMessage;
     private ProgressBar progressBar;
@@ -79,11 +80,18 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_chat);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(ProgressBar.VISIBLE);
 
-        weather = getIntent().getExtras().getParcelable(WEATHER);
+        if (savedInstanceState != null) {
+            // Restore value of members from saved state
+            weather = savedInstanceState.getParcelable(WEATHER);
+        }else {
+            weather = getIntent().getExtras().getParcelable(WEATHER);
+
+        }
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -177,6 +185,13 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
             }
         };
         providers = new ArrayList<>();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putParcelable(WEATHER, weather);
+        super.onSaveInstanceState(outState);
+
     }
 
     @Override
@@ -356,12 +371,12 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
             AuthUI.getInstance().signOut(this);
 
         }
-        //else if (id == R.id.photo_galery) {
-//            Intent photoGaleryIntent = new Intent(this, PhotoActivity.class);
-//            photoGaleryIntent.putParcelableArrayListExtra("kk", photoList);
-//            startActivity(photoGaleryIntent);
-//
-//        }
+        else if (id == R.id.photo_gallery) {
+            Intent photoGaleryIntent = new Intent(this, PhotoActivity.class);
+           // photoGaleryIntent.putParcelableArrayListExtra("kk", photoList);
+            startActivity(photoGaleryIntent);
+
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

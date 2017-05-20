@@ -47,6 +47,7 @@
     <string name="temperatura2">"%.1f °C"</string>
     <string name="my_point_label">Мои точки</string>
     <string name="my_point_detail_label">Описание точки</string>
+    <string name="galery_label">Галерея</string>
 
 
 </resources>

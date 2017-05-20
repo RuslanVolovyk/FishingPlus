@@ -68,7 +68,7 @@ public class PointListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.point_list, container, false);
+        View view = inflater.inflate(R.layout.activity_point_list, container, false);
 
 
         buttonAddPoint = (FloatingActionButton) view.findViewById(R.id.fab);

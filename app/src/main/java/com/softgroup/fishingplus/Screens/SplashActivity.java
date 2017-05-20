@@ -15,7 +15,7 @@ import com.softgroup.fishingplus.models.Weather;
 
 public class SplashActivity extends AppCompatActivity {
     private static final String TAG = SplashActivity.class.getName();
-    public static final String WEATHER = "weather";
+    protected static final String WEATHER = "weather";
 
     private Location location;
     private Weather weather;

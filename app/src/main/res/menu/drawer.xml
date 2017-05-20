@@ -4,7 +4,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/drawer_map"
-            android:icon="@mipmap/maps_icon"
+            android:icon="@drawable/ic_map_black_24dp"
             android:title="@string/maps" />
         <item
             android:id="@+id/drawer_add_photo_from_gallery"
@@ -22,10 +22,10 @@
             android:id="@+id/drawer_weather"
             android:icon="@mipmap/sunny"
             android:title="@string/weather" />
-        <!--<item-->
-            <!--android:id="@+id/photo_galery"-->
-            <!--android:icon="@mipmap/sunny"-->
-            <!--android:title="@string/photo_galery" />-->
+        <item
+            android:id="@+id/photo_gallery"
+            android:icon="@drawable/ic_photo_album_black_24dp"
+            android:title="@string/photo_galery" />
     </group>
 
     <item android:title="@string/auth">
