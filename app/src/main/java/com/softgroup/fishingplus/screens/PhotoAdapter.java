@@ -1,6 +1,5 @@
 package com.softgroup.fishingplus.screens;
 
-
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +13,12 @@ import java.util.List;
 
 
 public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> {
+
     private List photoList;
     private LayoutInflater inflater;
 
     public PhotoAdapter(List photoList) {
         this.photoList = photoList;
-       // setHasStableIds(true);
     }
 
     @Override
@@ -52,7 +51,6 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> 
             super(itemView);
             imageView = (ImageView) itemView.findViewById(R.id.image_view_photo_galery);
 
-
         }
 
         public void bind(String photo) {
@@ -62,7 +60,6 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> 
                     .load(photo)
                     .into(imageView);
         }
-
 
     }
 }

@@ -1,4 +1,4 @@
-package com.softgroup.fishingplus.models;
+package com.softgroup.fishingplus.screens;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.softgroup.fishingplus.R;
+import com.softgroup.fishingplus.models.Message;
 
 import java.util.List;
 
@@ -20,10 +21,10 @@ import java.util.List;
  * Created by Администратор on 20.03.2017.
  */
 
-public class MessageAdapter extends ArrayAdapter<FriendlyMessage> {
+public class MessageAdapter extends ArrayAdapter<Message> {
 
 
-    public MessageAdapter(Context context, int resource, List<FriendlyMessage> objects) {
+    MessageAdapter(Context context, int resource, List<Message> objects) {
         super(context, resource, objects);
     }
 
@@ -39,25 +40,28 @@ public class MessageAdapter extends ArrayAdapter<FriendlyMessage> {
         TextView time = (TextView) convertView.findViewById(R.id.message_time);
 
 
-        FriendlyMessage friendlyMessage = getItem(position);
+        Message message = getItem(position);
 
-        boolean isPhoto = friendlyMessage.getPhoto() != null;
+        boolean isPhoto = false;
+        if (message != null) {
+            isPhoto = message.getPhoto() != null;
+        }
         if (isPhoto) {
             messageTextView.setVisibility(View.GONE);
             messageImageView.setVisibility(View.VISIBLE);
             Glide.with(messageImageView.getContext())
-                    .load(friendlyMessage.getPhoto())
+                    .load(message.getPhoto())
                     .into(messageImageView);
 
         } else {
             messageTextView.setVisibility(View.VISIBLE);
             messageImageView.setVisibility(View.GONE);
-            messageTextView.setText(friendlyMessage.getText());
+            messageTextView.setText(message.getText());
         }
-        nameUser.setText(friendlyMessage.getName());
+        nameUser.setText(message.getName());
 
         time.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)",
-                friendlyMessage.getTime()));
+                message.getTime()));
         return convertView;
 
     }

@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by Администратор on 19.03.2017.
  */
 
-public class FriendlyMessage {
+public class Message {
 
     private String id;
     private String name;
@@ -22,10 +22,10 @@ public class FriendlyMessage {
         this.time = time;
     }
 
-    public FriendlyMessage() {
+    public Message() {
     }
 
-    public FriendlyMessage(String name, String text, String photo) {
+    public Message(String name, String text, String photo) {
         this.name = name;
         this.text = text;
         this.photo = photo;

@@ -40,8 +40,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.softgroup.fishingplus.R;
 import com.softgroup.fishingplus.Utils;
-import com.softgroup.fishingplus.models.FriendlyMessage;
-import com.softgroup.fishingplus.models.MessageAdapter;
+import com.softgroup.fishingplus.models.Message;
 import com.softgroup.fishingplus.models.Weather;
 
 import java.io.ByteArrayOutputStream;
@@ -74,8 +73,6 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
     public static String username;
     private SharedPreferences sharedPreferences;
     private Weather weather;
-//    ArrayList<Photo> photoList;
-//    Photo photo = new Photo();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,14 +81,7 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(ProgressBar.VISIBLE);
 
-        if (savedInstanceState != null) {
-            // Restore value of members from saved state
-            weather = savedInstanceState.getParcelable(WEATHER);
-        }else {
-            weather = getIntent().getExtras().getParcelable(WEATHER);
-
-        }
-
+        weather = getIntent().getExtras().getParcelable(WEATHER);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -115,8 +105,8 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
 
         messageListView = (ListView) findViewById(R.id.message_list_view);
 
-        List<FriendlyMessage> friendlyMessages = new ArrayList<>();
-        messageAdapter = new MessageAdapter(this, R.layout.layout_message_item, friendlyMessages);
+        List<Message> messages = new ArrayList<>();
+        messageAdapter = new MessageAdapter(this, R.layout.layout_message_item, messages);
         messageListView.setAdapter(messageAdapter);
 
 
@@ -149,9 +139,9 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
         buttonSendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FriendlyMessage friendlyMessage = new FriendlyMessage(username, editTextInputMessage.getText()
+                Message message = new Message(username, editTextInputMessage.getText()
                         .toString(), null);
-                messagesDatabaseReference.push().setValue(friendlyMessage);
+                messagesDatabaseReference.push().setValue(message);
                 editTextInputMessage.setText("");
             }
         });
@@ -181,18 +171,11 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
                 }
 
 
-
             }
         };
         providers = new ArrayList<>();
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        outState.putParcelable(WEATHER, weather);
-        super.onSaveInstanceState(outState);
-
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -212,16 +195,9 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
             photoRef.putFile(selectedImageUri)
                     .addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            //  photoList = new ArrayList<>();
                             Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                            FriendlyMessage friendlyMessage = new FriendlyMessage(username, null, downloadUrl.toString());
-                            messagesDatabaseReference.push().setValue(friendlyMessage);
-//                            photo.setImage(downloadUrl.toString());
-//                            try {
-//                                photoList.add(photo);
-//                            } catch (Exception e) {
-//                                e.printStackTrace();
-//                            }
+                            Message message = new Message(username, null, downloadUrl.toString());
+                            messagesDatabaseReference.push().setValue(message);
 
                         }
                     });
@@ -243,8 +219,8 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                    FriendlyMessage friendlyMessage = new FriendlyMessage(username, null, downloadUrl.toString());
-                    messagesDatabaseReference.push().setValue(friendlyMessage);
+                    Message message = new Message(username, null, downloadUrl.toString());
+                    messagesDatabaseReference.push().setValue(message);
                 }
             });
         }
@@ -265,8 +241,8 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
             childEventListener = new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    FriendlyMessage friendlyMessage = dataSnapshot.getValue(FriendlyMessage.class);
-                    messageAdapter.add(friendlyMessage);
+                    Message message = dataSnapshot.getValue(Message.class);
+                    messageAdapter.add(message);
                 }
 
                 @Override
@@ -370,10 +346,9 @@ public class ChatActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.sign_out_menu) {
             AuthUI.getInstance().signOut(this);
 
-        }
-        else if (id == R.id.photo_gallery) {
+        } else if (id == R.id.photo_gallery) {
             Intent photoGaleryIntent = new Intent(this, PhotoActivity.class);
-           // photoGaleryIntent.putParcelableArrayListExtra("kk", photoList);
+            // photoGaleryIntent.putParcelableArrayListExtra("kk", photoList);
             startActivity(photoGaleryIntent);
 
         }

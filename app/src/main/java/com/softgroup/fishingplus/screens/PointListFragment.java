@@ -20,7 +20,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.softgroup.fishingplus.R;
@@ -50,7 +49,6 @@ public class PointListFragment extends Fragment {
     private FloatingActionButton buttonAddPoint;
     private DatabaseReference pointDatabaseReference;
     private FirebaseDatabase firebaseDatabase;
-    private ChildEventListener childEventListener;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,9 +82,6 @@ public class PointListFragment extends Fragment {
         pointDatabaseReference = firebaseDatabase.getReference().child("my_point");
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_points);
 
-//        List<Point> pointList = new ArrayList<>();
-//        pointAdapter = new PointAdapter(pointList);
-//        recyclerView.setAdapter(pointAdapter);
 
         recyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getActivity())
                 .color(Color.BLACK)
@@ -111,46 +106,10 @@ public class PointListFragment extends Fragment {
         }
     }
 
-//    private void attachDatabaseReadListener() {
-//        if (childEventListener == null){
-//            childEventListener = new ChildEventListener() {
-//                @Override
-//                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//
-//                    Point point = dataSnapshot.getValue(Point.class);
-//                    pointAdapter.add(point);
-//                }
-//
-//                @Override
-//                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//
-//                }
-//
-//                @Override
-//                public void onChildRemoved(DataSnapshot dataSnapshot) {
-//
-//                }
-//
-//                @Override
-//                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//                }
-//
-//                @Override
-//                public void onCancelled(DatabaseError databaseError) {
-//
-//                }
-//            };
-//            pointDatabaseReference.addChildEventListener(childEventListener);
-//
-//        }
-//    }
-
 
     @Override
     public void onResume() {
         super.onResume();
-        //  attachDatabaseReadListener();
         updateUI();
     }
 
@@ -227,7 +186,6 @@ public class PointListFragment extends Fragment {
 
         public PointAdapter(List<Point> pointList) {
             this.pointList = pointList;
-            //setHasStableIds(true);
         }
 
         @Override

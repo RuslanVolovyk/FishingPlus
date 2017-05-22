@@ -5,18 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.ImageView;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.softgroup.fishingplus.R;
-import com.softgroup.fishingplus.models.FriendlyMessage;
+import com.softgroup.fishingplus.models.Message;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,14 +21,10 @@ import java.util.List;
 public class PhotoActivity extends AppCompatActivity {
 
     private static final String TAG = PhotoActivity.class.getName();
-    private ImageView photoFromGalery;
-    private FirebaseStorage storage;
-    private StorageReference ref;
+
     private RecyclerView recyclerView;
     private PhotoAdapter photoAdapter;
-    private ArrayList<FriendlyMessage> photoList;
     private DatabaseReference mDatabase;
-    private ChildEventListener childEventListener;
     private FirebaseDatabase firebaseDatabase;
 
 
@@ -61,21 +53,13 @@ public class PhotoActivity extends AppCompatActivity {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 List<String> listPhoto = new ArrayList<>();
-
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-
-                    FriendlyMessage match = postSnapshot.getValue(FriendlyMessage.class);
-
-                    String photo = match.getPhoto();
+                    Message message = postSnapshot.getValue(Message.class);
+                    String photo = message.getPhoto();
                     if (photo != null){
                         listPhoto.add(photo);
-
                     }
-
-                   // String name = postSnapshot.child("photo").getValue(String.class);
-                   // Log.i(TAG, "Referee " + name);
                 }
 
                 photoAdapter = new PhotoAdapter(listPhoto);
@@ -88,9 +72,8 @@ public class PhotoActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.w(TAG, "onCancelled ", databaseError.toException());
-                // ...
-            }
+                Log.w(TAG, "onCancelled Error ", databaseError.toException());
+                           }
         });
     }
 }

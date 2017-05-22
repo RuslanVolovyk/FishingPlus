@@ -42,22 +42,16 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".screens.MapsActivity"></activity>
-
-
-        <activity android:name=".screens.PointsListActivity"
-            android:label="@string/my_point_label"/>
-
-        <activity android:name=".screens.PointActivity"
-            android:label="@string/my_point_detail_label">
-
-        </activity>
-
-        <activity android:name=".screens.PhotoActivity"
-            android:label="@string/galery_label"
-           android:parentActivityName=".screens.ChatActivity">
-
-        </activity>
+        <activity android:name=".screens.MapsActivity" />
+        <activity
+            android:name=".screens.PointsListActivity"
+            android:label="@string/my_point_label" />
+        <activity
+            android:name=".screens.PointActivity"
+            android:label="@string/my_point_detail_label"></activity>
+        <activity
+            android:name=".screens.PhotoActivity"
+            android:label="@string/galery_label"></activity>
     </application>
 
 </manifest>
