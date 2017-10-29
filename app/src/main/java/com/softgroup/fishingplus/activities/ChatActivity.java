@@ -1,4 +1,4 @@
-package com.softgroup.fishingplus.screens;
+package com.softgroup.fishingplus.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -39,7 +39,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.softgroup.fishingplus.R;
-import com.softgroup.fishingplus.Utils;
+import com.softgroup.fishingplus.adapters.MessageAdapter;
+import com.softgroup.fishingplus.utils.Utils;
 import com.softgroup.fishingplus.models.Message;
 import com.softgroup.fishingplus.models.Weather;
 
@@ -48,7 +49,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.softgroup.fishingplus.R.id.button_send;
-import static com.softgroup.fishingplus.screens.SplashActivity.WEATHER;
+import static com.softgroup.fishingplus.activities.SplashActivity.WEATHER;
 
 public class ChatActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = ChatActivity.class.getName();

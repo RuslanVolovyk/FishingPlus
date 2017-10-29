@@ -8,7 +8,7 @@
     android:background="@drawable/weather_gradient"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context="com.softgroup.fishingplus.screens.WeatherActivity">
+    tools:context="com.softgroup.fishingplus.activities.WeatherActivity">
 
 
     <LinearLayout

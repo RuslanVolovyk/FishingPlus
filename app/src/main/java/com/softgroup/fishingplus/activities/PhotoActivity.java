@@ -1,4 +1,4 @@
-package com.softgroup.fishingplus.screens;
+package com.softgroup.fishingplus.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +12,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.softgroup.fishingplus.R;
+import com.softgroup.fishingplus.adapters.PhotoAdapter;
 import com.softgroup.fishingplus.models.Message;
 
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class PhotoActivity extends AppCompatActivity {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         mDatabase =  firebaseDatabase.getReference().child("messages");
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_photo);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

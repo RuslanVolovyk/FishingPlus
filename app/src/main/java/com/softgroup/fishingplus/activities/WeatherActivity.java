@@ -1,4 +1,4 @@
-package com.softgroup.fishingplus.screens;
+package com.softgroup.fishingplus.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,10 +8,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.softgroup.fishingplus.R;
-import com.softgroup.fishingplus.Utils;
+import com.softgroup.fishingplus.utils.Utils;
 import com.softgroup.fishingplus.models.Weather;
 
-import static com.softgroup.fishingplus.screens.SplashActivity.WEATHER;
+import static com.softgroup.fishingplus.activities.SplashActivity.WEATHER;
 
 
 public class WeatherActivity extends AppCompatActivity {

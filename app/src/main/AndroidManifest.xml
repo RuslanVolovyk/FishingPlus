@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".screens.SplashActivity"
+            android:name=".activities.SplashActivity"
             android:noHistory="true"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -28,12 +28,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".screens.WeatherActivity"
+            android:name=".activities.WeatherActivity"
             android:label="@string/weather_activity_name"
             android:screenOrientation="portrait"
             android:theme="@style/WeatherTheme" />
         <activity
-            android:name=".screens.ChatActivity"
+            android:name=".activities.ChatActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
@@ -42,15 +42,15 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".screens.MapsActivity" />
+        <activity android:name=".activities.MapsActivity" />
         <activity
-            android:name=".screens.PointsListActivity"
+            android:name=".activities.PointsListActivity"
             android:label="@string/my_point_label" />
         <activity
-            android:name=".screens.PointActivity"
+            android:name=".activities.PointActivity"
             android:label="@string/my_point_detail_label"></activity>
         <activity
-            android:name=".screens.PhotoActivity"
+            android:name=".activities.PhotoActivity"
             android:label="@string/galery_label"></activity>
     </application>
 

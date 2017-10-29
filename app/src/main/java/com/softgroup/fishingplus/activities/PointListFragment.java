@@ -1,4 +1,4 @@
-package com.softgroup.fishingplus.screens;
+package com.softgroup.fishingplus.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -31,7 +31,7 @@ import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.List;
 
-import static com.softgroup.fishingplus.screens.SplashActivity.WEATHER;
+import static com.softgroup.fishingplus.activities.SplashActivity.WEATHER;
 
 /**
  * Created by Администратор on 26.04.2017.

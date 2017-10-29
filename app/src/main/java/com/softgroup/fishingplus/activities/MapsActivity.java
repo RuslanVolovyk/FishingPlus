@@ -1,4 +1,4 @@
-package com.softgroup.fishingplus.screens;
+package com.softgroup.fishingplus.activities;
 
 import android.graphics.Color;
 import android.location.Location;
@@ -18,12 +18,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.softgroup.fishingplus.R;
-import com.softgroup.fishingplus.Utils;
+import com.softgroup.fishingplus.utils.Utils;
 import com.softgroup.fishingplus.data.GPSCurrentPosition;
 
 import static com.softgroup.fishingplus.R.id.map;
-import static com.softgroup.fishingplus.screens.PointListFragment.LAT;
-import static com.softgroup.fishingplus.screens.PointListFragment.LON;
+import static com.softgroup.fishingplus.activities.PointListFragment.LAT;
+import static com.softgroup.fishingplus.activities.PointListFragment.LON;
 
 
 //        GoogleApiClient.ConnectionCallbacks,

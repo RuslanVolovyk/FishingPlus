@@ -1,4 +1,4 @@
-package com.softgroup.fishingplus.screens;
+package com.softgroup.fishingplus.activities;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.softgroup.fishingplus.R;
 import com.softgroup.fishingplus.models.Weather;
 
-import static com.softgroup.fishingplus.screens.SplashActivity.WEATHER;
+import static com.softgroup.fishingplus.activities.SplashActivity.WEATHER;
 
 public class PointsListActivity extends AppCompatActivity {
     private static final String TAG = PointsListActivity.class.getName();

@@ -1,4 +1,4 @@
-package com.softgroup.fishingplus;
+package com.softgroup.fishingplus.utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

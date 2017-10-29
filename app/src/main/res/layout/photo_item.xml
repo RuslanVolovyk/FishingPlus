@@ -5,17 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingRight="16dp"
-    android:paddingLeft="16dp"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp"
-    tools:context="com.softgroup.fishingplus.screens.PhotoActivity">
+    tools:context="com.softgroup.fishingplus.activities.PhotoActivity">
 
     <ImageView
         android:id="@+id/image_view_photo_galery"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:layout_gravity="center_horizontal" />
-
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+    android:paddingBottom="16dp"
+    />
 </LinearLayout>

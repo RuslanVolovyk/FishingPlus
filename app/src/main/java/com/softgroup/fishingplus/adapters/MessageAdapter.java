@@ -1,4 +1,4 @@
-package com.softgroup.fishingplus.screens;
+package com.softgroup.fishingplus.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -24,7 +24,7 @@ import java.util.List;
 public class MessageAdapter extends ArrayAdapter<Message> {
 
 
-    MessageAdapter(Context context, int resource, List<Message> objects) {
+    public MessageAdapter(Context context, int resource, List<Message> objects) {
         super(context, resource, objects);
     }
 

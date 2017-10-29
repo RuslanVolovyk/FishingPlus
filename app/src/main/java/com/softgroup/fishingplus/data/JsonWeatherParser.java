@@ -1,6 +1,6 @@
 package com.softgroup.fishingplus.data;
 
-import com.softgroup.fishingplus.Utils;
+import com.softgroup.fishingplus.utils.Utils;
 import com.softgroup.fishingplus.models.Weather;
 
 import org.json.JSONArray;

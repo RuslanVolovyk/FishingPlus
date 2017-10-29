@@ -1,4 +1,4 @@
-package com.softgroup.fishingplus.screens;
+package com.softgroup.fishingplus.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,7 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.softgroup.fishingplus.R;
-import com.softgroup.fishingplus.Utils;
+import com.softgroup.fishingplus.utils.Utils;
 import com.softgroup.fishingplus.models.Point;
 import com.softgroup.fishingplus.models.PointSingle;
 
